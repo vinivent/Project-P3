@@ -1,6 +1,6 @@
 <h1 align="center">A UNICAP project</h1> <br/> 
 
-- This is a UNICAP project made for P3 discipline at UNICAP
+<p align="center">- This is a UNICAP project made for P3 discipline at UNICAP</p>
 
 <h2 align= "center"> Basic Features: </h2> <br/>
 
