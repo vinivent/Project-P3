@@ -44,7 +44,7 @@ public class ReachMe {
 
     public static void menu1() {
         System.out.println("");
-        System.out.println("  =========================================================");
+        System.out.println("  ========================================================= ");
         System.out.println("        {1} CREATE ACCOUNT ~ {2} LOGIN ~ {0} Exit");
         System.out.print("                     Choose an option: ");
     }
@@ -54,14 +54,18 @@ public class ReachMe {
         System.out.println("EMAIL: ");
         String email = scanner.nextLine();
         while (insert_mail(email) == false) {
+            System.out.println("========================");
             System.out.println("Please insert a valid email.");
             System.out.println("EMAIL: ");
             email = scanner.nextLine();
         }
+        System.out.println("========================");
         System.out.println("USERNAME: ");
         String username = scanner.nextLine();
+        System.out.println("========================");
         System.out.println("PASSWORD: ");
         String password = scanner.nextLine();
+        System.out.println("========================");
         System.out.println("BIRTHDATE (dd/MM/yyyy): ");
         String birthdate = scanner.nextLine();
         while (isDate(birthdate) == false) {
@@ -69,6 +73,7 @@ public class ReachMe {
             System.out.println("BIRTHDATE (dd/MM/yyyy): ");
             birthdate = scanner.nextLine();
         }
+        System.out.println("========================");
         System.out.println("RELATIONSHIP: ");
         String relationship = scanner.nextLine();
         accounts.add(new CreateAccount(email, username, password, birthdate, relationship));
