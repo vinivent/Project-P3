@@ -1,11 +1,9 @@
-import java.util.List;
-
-import javax.swing.text.StyledEditorKit.BoldAction;
+// import java.util.List;
 
 public class CreateAccount {
     private String email, password, username, birthdate, relationship;
     
-    private List<posts> posts;   
+    // private List<posts> posts;   
 
     public CreateAccount(String email, String username, String password, String birthdate, String relationship) {
         this.email = email;
