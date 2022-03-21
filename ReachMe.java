@@ -29,7 +29,7 @@ public class ReachMe {
                     singUp();
                     break;
                 case 2:
-                    System.out.println("implementar log in");
+                    logIn();
                     break;
                 case 0:
                     System.out.println("See you soon.");
@@ -105,4 +105,73 @@ public class ReachMe {
         return matcher.matches();
     }
 
+    /*public static boolean validateDate(String date){
+        isDate(date);
+        return true;
+    }*/
+
+    // LOG IN
+    public static void logIn() {
+        scanner.nextLine();
+        System.out.println("Insert your email: ");
+        String email = scanner.nextLine();
+        checkAccount(email);
+        System.out.println("========================");
+        System.out.println("PASSWORD: ");
+        String password = scanner.nextLine();
+        checkPassword(password);
+        //clearwelcome();
+    }
+
+    public static int searchAccount(String email) {
+        for (int i = 0; i < accounts.size(); i++) {
+            if (email.equals(accounts.get(i).getEmail())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+public static int checkAccount(String emailAd) {
+        
+
+        int registered = searchAccount(emailAd);
+        while (registered == -1) {
+        System.out.println("Email not registered, try again.");
+        emailAd = scanner.nextLine();
+            registered = searchAccount(emailAd);
+        }
+        return registered;
+    }
+    public static int searchPassword(String password) {
+        for (int i = 0; i < accounts.size(); i++) {
+            if (password.equals(accounts.get(i).getPassword())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+public static int checkPassword(String passwordUser) {
+        
+
+        int registered = searchPassword(passwordUser);
+        while (registered == -1) {
+        System.out.println("Invalid password, try again.");
+        passwordUser = scanner.nextLine();
+            registered = searchPassword(passwordUser);
+        }
+        return registered;
+    }
+    public static void welcome() {
+        String username = ((CreateAccount) accounts).getUsername();
+        System.out.println("");
+            System.out.println("  ██████╗ ███████╗ █████╗  ██████╗██╗  ██╗███╗   ███╗███████╗");
+            System.out.println("  ██╔══██╗██╔════╝██╔══██╗██╔════╝██║  ██║████╗ ████║██╔════╝");
+            System.out.println("  ██████╔╝█████╗  ███████║██║     ███████║██╔████╔██║█████╗ ");
+            System.out.println("  ██╔══██╗██╔══╝  ██╔══██║██║     ██╔══██║██║╚██╔╝██║██╔══╝  ");
+            System.out.println("  ██║  ██║███████╗██║  ██║╚██████╗██║  ██║██║ ╚═╝ ██║███████╗");
+            System.out.println("  ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝");
+            System.out.println("             {ReachMe - Welcome"  + username + "}                 ");
+    }
 }

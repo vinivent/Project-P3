@@ -29,14 +29,14 @@ public class CreateAccount {
         this.password = password;
     }
 
-    public String getUsermame() {
+    public String getUsername() {
         return this.username;
     }
 
     public void setUsername(String username) {
         String novoNome;
-        if(getUsermame().length() < 4 && getUsermame().length() >= 15){
-            novoNome = "Guest";
+        if(getUsername().length() < 4 && getUsername().length() >= 15){
+            novoNome = "Guest" + (1 + Math.random() * 99999999);
             this.username = novoNome;
         }
         this.username = username;
