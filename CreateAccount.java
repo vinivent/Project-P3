@@ -1,10 +1,12 @@
-// import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 public class CreateAccount {
     private String email, password, username, birthdate, relationship;
     
     // private List<posts> posts;   
-
+    // private List<CreateAccount> accounts = new ArrayList<>();
+     
     public CreateAccount(String email, String username, String password, String birthdate, String relationship) {
         this.email = email;
         this.password = password;

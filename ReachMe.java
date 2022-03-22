@@ -48,7 +48,7 @@ public class ReachMe {
         System.out.println("        {1} CREATE ACCOUNT ~ {2} LOGIN ~ {0} Exit");
         System.out.print("                     Choose an option: ");
     }
-
+    // SIGN UP
     public static void singUp() {
         scanner.nextLine();
         System.out.println("EMAIL: ");
@@ -79,6 +79,17 @@ public class ReachMe {
         accounts.add(new CreateAccount(email, username, password, birthdate, relationship));
     }
 
+    // LOG IN
+    public static void logIn() {
+        scanner.nextLine();
+        System.out.println("Insert your email: ");
+        String email = scanner.nextLine();
+        checkAccount(email);
+        System.out.println("========================");
+        System.out.println("PASSWORD: ");
+        String password = scanner.nextLine();
+        checkPassword(password);
+    }
     // VALIDATING METHODS.
 
     public static boolean isMail(String email) {
@@ -105,23 +116,12 @@ public class ReachMe {
         return matcher.matches();
     }
 
-    /*public static boolean validateDate(String date){
-        isDate(date);
-        return true;
-    }*/
-
-    // LOG IN
-    public static void logIn() {
-        scanner.nextLine();
-        System.out.println("Insert your email: ");
-        String email = scanner.nextLine();
-        checkAccount(email);
-        System.out.println("========================");
-        System.out.println("PASSWORD: ");
-        String password = scanner.nextLine();
-        checkPassword(password);
-        //clearwelcome();
-    }
+    /*
+     * public static boolean validateDate(String date){
+     * isDate(date);
+     * return true;
+     * }
+     */
 
     public static int searchAccount(String email) {
         for (int i = 0; i < accounts.size(); i++) {
@@ -132,17 +132,17 @@ public class ReachMe {
         return -1;
     }
 
-public static int checkAccount(String emailAd) {
-        
+    public static int checkAccount(String emailAd) {
 
         int registered = searchAccount(emailAd);
         while (registered == -1) {
-        System.out.println("Email not registered, try again.");
-        emailAd = scanner.nextLine();
+            System.out.println("Email not registered, try again.");
+            emailAd = scanner.nextLine();
             registered = searchAccount(emailAd);
         }
         return registered;
     }
+
     public static int searchPassword(String password) {
         for (int i = 0; i < accounts.size(); i++) {
             if (password.equals(accounts.get(i).getPassword())) {
@@ -152,26 +152,26 @@ public static int checkAccount(String emailAd) {
         return -1;
     }
 
-public static int checkPassword(String passwordUser) {
-        
+    public static int checkPassword(String passwordUser) {
 
         int registered = searchPassword(passwordUser);
         while (registered == -1) {
-        System.out.println("Invalid password, try again.");
-        passwordUser = scanner.nextLine();
+            System.out.println("Invalid password, try again.");
+            passwordUser = scanner.nextLine();
             registered = searchPassword(passwordUser);
         }
         return registered;
     }
+
     public static void welcome() {
         String username = ((CreateAccount) accounts).getUsername();
         System.out.println("");
-            System.out.println("  ██████╗ ███████╗ █████╗  ██████╗██╗  ██╗███╗   ███╗███████╗");
-            System.out.println("  ██╔══██╗██╔════╝██╔══██╗██╔════╝██║  ██║████╗ ████║██╔════╝");
-            System.out.println("  ██████╔╝█████╗  ███████║██║     ███████║██╔████╔██║█████╗ ");
-            System.out.println("  ██╔══██╗██╔══╝  ██╔══██║██║     ██╔══██║██║╚██╔╝██║██╔══╝  ");
-            System.out.println("  ██║  ██║███████╗██║  ██║╚██████╗██║  ██║██║ ╚═╝ ██║███████╗");
-            System.out.println("  ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝");
-            System.out.println("             {ReachMe - Welcome"  + username + "}                 ");
+        System.out.println("  ██████╗ ███████╗ █████╗  ██████╗██╗  ██╗███╗   ███╗███████╗");
+        System.out.println("  ██╔══██╗██╔════╝██╔══██╗██╔════╝██║  ██║████╗ ████║██╔════╝");
+        System.out.println("  ██████╔╝█████╗  ███████║██║     ███████║██╔████╔██║█████╗ ");
+        System.out.println("  ██╔══██╗██╔══╝  ██╔══██║██║     ██╔══██║██║╚██╔╝██║██╔══╝  ");
+        System.out.println("  ██║  ██║███████╗██║  ██║╚██████╗██║  ██║██║ ╚═╝ ██║███████╗");
+        System.out.println("  ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝");
+        System.out.println("             {ReachMe - Welcome" + username + "}                 ");
     }
 }
