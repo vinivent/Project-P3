@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Network{
-    private static LinkedList<CreateAccount> Accounts = new LinkedList<CreateAccount>();
+    private static LinkedList<Account> Accounts = new LinkedList<Account>();
     static Scanner s= new Scanner(System.in);
 
    //Criar conta
@@ -31,7 +31,7 @@ public class Network{
         System.out.println("BIRTHDATE: ");
         String birthdate = s.nextLine();
         isDate(birthdate);
-        CreateAccount a = new CreateAccount(email, username, password, birthdate);
+        Account a = new Account(email, username, password, birthdate);
         Accounts.add(a);
         
     }
@@ -59,7 +59,7 @@ public class Network{
                     option = s.next().charAt(0);
                 }while(option!='y' && option!='Y');
 
-                for(CreateAccount account : Accounts){
+                for(Account account : Accounts){
                     if ((account.getEmail()).equals(email)) {
                         account.setUsername(newUsername);
 
@@ -78,7 +78,7 @@ public class Network{
                     System.out.println("the new password cannot be the same as the old one");
                     newPassword = s.next();
                 }
-                for(CreateAccount account: Accounts){
+                for(Account account: Accounts){
                     if(account.getEmail().equals(email)){
                         account.setPassword(newPassword);
                     }
@@ -126,7 +126,7 @@ public class Network{
         if (!isMail(email)) {
             return false;
         } else {
-            for (CreateAccount account : Accounts) {
+            for (Account account : Accounts) {
                 if ((account.getEmail()).equals(email)) {
                     System.out.println("This email is already registered");
                     return false;
@@ -165,7 +165,7 @@ public class Network{
     }
 
     public int searchAccount(String email) {
-        for (CreateAccount account : Accounts) {
+        for (Account account : Accounts) {
             if ((account.getEmail()).equals(email)) {
                 return 1;
             }
@@ -174,7 +174,7 @@ public class Network{
     }
 
     public int searchPassword(String password) {
-        for (CreateAccount account : Accounts) {
+        for (Account account : Accounts) {
             if ((account.getPassword()).equals(password)) {
                 return 1;
             }
@@ -195,7 +195,7 @@ public class Network{
     }
 
     public String getUser(String email){
-        for(CreateAccount account : Accounts){
+        for(Account account : Accounts){
             if(account.getEmail().equals(email)){
                String tempName;
                 if(account.getUsername().equals("")){

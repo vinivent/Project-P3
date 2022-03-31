@@ -2,13 +2,13 @@ package Logic;
 //import java.util.ArrayList;
 //import java.util.List;
 
-public class CreateAccount {
+public class Account {
     private String email, password, username, birthdate, relationship;
     
     // private List<posts> posts;   
     // private List<CreateAccount> accounts = new ArrayList<>();
      
-    public CreateAccount(String email, String username, String password, String birthdate) {
+    public Account(String email, String username, String password, String birthdate) {
         this.email = email;
         this.password = password;
         this.username = username;
