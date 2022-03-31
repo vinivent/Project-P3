@@ -1,12 +1,12 @@
 package Interface;
 
 import java.util.Scanner;
-import Logic.Rede;
+import Logic.Network;
 
 
 public class ReachMe {
       static Scanner s = new Scanner(System.in);
-      static Rede conta = new Rede();
+      static Network conta = new Network();
 
     public static void main(String[] args) {
         byte op = 1;
