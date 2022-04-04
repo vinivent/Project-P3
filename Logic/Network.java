@@ -15,7 +15,7 @@ public class Network{
         
         System.out.println("EMAIL: ");
         String email = s.nextLine();
-        while (insert_mail(email) == false) {
+        while (!insert_mail(email)) {
             System.out.println("========================");
             System.out.println("Please insert a valid email.");
             System.out.print("EMAIL: ");
@@ -28,9 +28,15 @@ public class Network{
         System.out.print("PASSWORD: ");
         String password = s.nextLine();
         System.out.println("========================");
+        System.out.println("DD/MM/YYYY");
         System.out.println("BIRTHDATE: ");
         String birthdate = s.nextLine();
-        isDate(birthdate);
+        while(!isDate(birthdate)){
+            System.out.println("Insert a valid birthdate");
+            System.out.println("DD/MM/YYYY");
+            System.out.println("BIRTHDATE: ");
+            birthdate = s.nextLine();
+        }
         Account a = new Account(email, username, password, birthdate);
         Accounts.add(a);
         
@@ -86,10 +92,25 @@ public class Network{
                 
                 break;
             case 3:
-                System.out.println("to Implement.");
+                String birthdate = "";
+                System.out.println("Insert the new birthdate");
+                System.out.println("DD/MM/YYYY");
+                birthdate=s.nextLine();
+                while(!isDate(birthdate)){
+                    System.out.println("Insert a valid birthdate");
+                    System.out.println("DD/MM/YYYY");
+                    System.out.print("BIRTHDATE: ");
+                    birthdate = s.nextLine();
+                }
+                for(Account account: Accounts){
+                    if(account.getEmail().equals(email)){
+                        account.setBirthdate(birthdate);
+                    }
+                }
                 break;
             case 4:
                 System.out.println("to Implement.");
+                //opções ou a pessoa escreve?
                 break;
             case 0:
                 break;
