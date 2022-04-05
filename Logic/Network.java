@@ -109,8 +109,43 @@ public class Network{
                 }
                 break;
             case 4:
-                System.out.println("to Implement.");
-                //opções ou a pessoa escreve?
+                byte opt=1;
+                System.out.println("=========================");
+                System.out.println("What you want to edit?");
+                System.out.println("{1} Dating");
+                System.out.println("{2} Married");
+                System.out.println("{3} Single");
+                System.out.println("{0} Back to menu");
+                System.out.println("=========================");
+                opt=s.nextByte();
+                switch (opt) {
+                    case 1:
+                        for(Account account: Accounts){
+                            if(account.getEmail().equals(email)){
+                            account.setRelationship("Dating");                            
+                            }
+                        }
+                        break;
+                    case 2:
+                        for(Account account: Accounts){
+                            if(account.getEmail().equals(email)){
+                                account.setRelationship("married");
+                            }
+                        }
+                        break;
+                    case 3:
+                        for(Account account: Accounts){
+                            if(account.getEmail().equals(email)){
+                            account.setRelationship("single");
+                            }
+                        }
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("Insert a valid option");
+                        break;
+                }
                 break;
             case 0:
                 break;
