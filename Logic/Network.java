@@ -129,14 +129,14 @@ public class Network{
                     case 2:
                         for(Account account: Accounts){
                             if(account.getEmail().equals(email)){
-                                account.setRelationship("married");
+                                account.setRelationship("Married");
                             }
                         }
                         break;
                     case 3:
                         for(Account account: Accounts){
                             if(account.getEmail().equals(email)){
-                            account.setRelationship("single");
+                            account.setRelationship("Single");
                             }
                         }
                         break;
@@ -169,14 +169,20 @@ public class Network{
         return email;
     }
     //Testes
-    // public void String(){
-    //     for(Account account : Accounts){
-    //         System.out.println(account.getEmail());
-    //         System.out.println(account.getUsername());
-    //         System.out.println(account.getPassword());
-    //     }
+    public void Profile(String email){
+        System.out.println();
+        for(Account account : Accounts){
+            if((account.getEmail()).equals(email)){
+                System.out.println("===========================");
+                System.out.println("Username: " + account.getUsername());
+                System.out.println("Birthdate: " + account.getBirthdate());
+                System.out.println("Relationship: " + account.getRelationship());
+                System.out.println("===========================");
+
+            }
+        }
         
-    // }
+    }
     
     public boolean insert_mail(String email) {
         if (!isMail(email)) {

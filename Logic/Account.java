@@ -13,6 +13,7 @@ public class Account {
         this.password = password;
         this.username = username;
         this.birthdate = birthdate;
+        relationship = "??";
     }
 
     public String getEmail() {

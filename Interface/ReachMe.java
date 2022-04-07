@@ -6,11 +6,11 @@ import Logic.Network;
 
 public class ReachMe {
       static Scanner s = new Scanner(System.in);
-      static Network conta = new Network();
+      static Network account = new Network();
 
     public static void main(String[] args) {
         byte op = 1;
-
+        
         do {
             System.out.println("");
             System.out.println("  ██████╗ ███████╗ █████╗  ██████╗██╗  ██╗███╗   ███╗███████╗");
@@ -25,11 +25,11 @@ public class ReachMe {
 
             switch (op) {
                 case 1:
-                    conta.createAccount();
+                    account.createAccount();
                     //conta.String();
                     break;
                 case 2:
-                   String email = conta.logIn();
+                   String email = account.logIn();
                     online(email);
                     break;
                 case 0:
@@ -51,7 +51,7 @@ public class ReachMe {
     }
 
     public static void welcome(String email) {
-        String username = conta.getUser(email);
+        String username = account.getUser(email);
  
         System.out.println("");
         System.out.println("  ██████╗ ███████╗ █████╗  ██████╗██╗  ██╗███╗   ███╗███████╗");
@@ -61,14 +61,15 @@ public class ReachMe {
         System.out.println("  ██║  ██║███████╗██║  ██║╚██████╗██║  ██║██║ ╚═╝ ██║███████╗");
         System.out.println("  ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝");
         System.out.println("               {ReachMe - Welcome " + username +"}           ");
+        
     }
 
     public static void menuOnline() {
         System.out.println("");
         System.out.println("  ========================================================= ");
         System.out.println("     {1} EDIT ACCOUNT ~ {2} ADD FRIEND ~ {3} SEND MENSAGE");
-        System.out.println("                         {0} LOGOUT                       ");
-        System.out.print("                        Choose an option: ");
+        System.out.println("              {4} SHOW PROFILE ~ {0} LOGOUT               ");
+        System.out.print("                         Choose an option: ");
     }
 
     public static void online(String email){
@@ -82,13 +83,16 @@ public class ReachMe {
 
             switch (op)  {
                 case 1:
-                    conta.editAccount(email);
+                    account.editAccount(email);
                     break;
                 case 2:
                     System.out.println("to Implement.");
                     break;
                 case 3:
                     System.out.println("to Implement.");
+                    break;
+                case 4:
+                    account.Profile(email);
                     break;
                 case 0:
                     System.out.println("See you soon.");;
