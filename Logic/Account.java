@@ -3,22 +3,22 @@ package Logic;
 import java.util.LinkedList;
 
 public class Account {
-    private String email, password, username, birthdate, relationship;
+    private String email, password, username, birthdate, relationship, description;
 
     private LinkedList<Account> RequestsList;
     private LinkedList<String> Message;
-    private LinkedList<Account> FriendList; 
+    private LinkedList<Account> FriendList;
 
-     
     public Account(String email, String username, String password, String birthdate) {
         this.email = email;
         this.password = password;
         this.username = username;
         this.birthdate = birthdate;
-        relationship = "??";
+        relationship = "???";
+        description = "Missing description";
         FriendList = new LinkedList<Account>();
-        RequestsList = new LinkedList <Account>();
-        Message = new LinkedList <String>();
+        RequestsList = new LinkedList<Account>();
+        Message = new LinkedList<String>();
     }
 
     public String getEmail() {
@@ -43,7 +43,7 @@ public class Account {
 
     public void setUsername(String username) {
         this.username = username;
-        
+
     }
 
     public String getBirthdate() {
@@ -62,24 +62,32 @@ public class Account {
         this.relationship = relationship;
     }
 
-    public LinkedList <Account> getFriendList(){
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LinkedList<Account> getFriendList() {
         return FriendList;
     }
 
-    public void setFriendList(LinkedList <Account> newList){
-        this.FriendList = newList; 
+    public void setFriendList(LinkedList<Account> newList) {
+        this.FriendList = newList;
     }
 
     public int getNotifications() {
         return RequestsList.size();
     }
 
-    public LinkedList <Account> getRequestsList(){
+    public LinkedList<Account> getRequestsList() {
         return RequestsList;
-    } 
-    public void setRequestsList(LinkedList <Account> newRequests){
+    }
+
+    public void setRequestsList(LinkedList<Account> newRequests) {
         this.RequestsList = newRequests;
     }
 
-     
 }
