@@ -71,9 +71,10 @@ public class ReachMe {
     public static void menuOnline() {
         System.out.println("");
         System.out.println("  ========================================================= ");
-        System.out.println("     {1} EDIT ACCOUNT ~ {2} FRIEND ~ {3} SEND MENSAGE");
+        System.out.println("   {1} EDIT ACCOUNT ~ {2} FRIEND SECTION ~ {3} SEND MENSAGE");
         System.out.println("              {4} SHOW PROFILE ~ {0} LOGOUT               ");
-        System.out.print("                       Choose an option: \n");
+        System.out.print("                       Choose an option: ");
+        System.out.print("");
     }
 
     public static void menuFriends(String email) {
@@ -81,7 +82,8 @@ public class ReachMe {
         System.out.println("  ========================================================= ");
         System.out.println("     {1} ADD FRIEND ~ {2} REMOVE FRIEND ~ {3} SHOW FRIENDS");
         System.out.println("                      {4} NOTIFICATIONS [" + account.getNotifications(email)+ "]");
-        System.out.print("                        Choose an option: \n");
+        System.out.print("                        Choose an option: ");
+        System.out.print("");
     }
 
     public static void online(String email){
