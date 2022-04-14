@@ -1,12 +1,16 @@
 package Interface;
 
 import java.util.Scanner;
+
+import Logic.Friends;
 import Logic.Network;
 
 
 public class ReachMe {
       static Scanner s = new Scanner(System.in);
       static Network account = new Network();
+      static Friends friend = new Friends();
+      
 
     public static void main(String[] args) {
         byte op = 1;
@@ -67,9 +71,17 @@ public class ReachMe {
     public static void menuOnline() {
         System.out.println("");
         System.out.println("  ========================================================= ");
-        System.out.println("     {1} EDIT ACCOUNT ~ {2} ADD FRIEND ~ {3} SEND MENSAGE");
+        System.out.println("     {1} EDIT ACCOUNT ~ {2} FRIEND ~ {3} SEND MENSAGE");
         System.out.println("              {4} SHOW PROFILE ~ {0} LOGOUT               ");
-        System.out.print("                         Choose an option: ");
+        System.out.print("                       Choose an option: \n");
+    }
+
+    public static void menuFriends(String email) {
+        System.out.println("");
+        System.out.println("  ========================================================= ");
+        System.out.println("     {1} ADD FRIEND ~ {2} REMOVE FRIEND ~ {3} SHOW FRIENDS");
+        System.out.println("                      {4} NOTIFICATIONS [" + account.getNotifications(email)+ "]");
+        System.out.print("                        Choose an option: \n");
     }
 
     public static void online(String email){
@@ -86,7 +98,8 @@ public class ReachMe {
                     account.editAccount(email);
                     break;
                 case 2:
-                    System.out.println("to Implement.");
+                    menuFriends(email);
+                    friend.optionFriends(email);
                     break;
                 case 3:
                     System.out.println("to Implement.");

@@ -6,8 +6,9 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Network{
-    private static LinkedList<Account> Accounts = new LinkedList<Account>();
+public class Network {
+    protected static LinkedList<Account> Accounts = new LinkedList<Account>();
+
     static Scanner s= new Scanner(System.in);
 
    //Criar conta
@@ -215,15 +216,16 @@ public class Network{
     }
     
 
-    public int checkAccount(String emailAd) {
+    public String checkAccount(String emailAd) {
 
         int registered = searchAccount(emailAd);
         while (registered == -1) {
-            System.out.println("Email not registered, try again.");
+            System.out.print("Email not registered, try again: ");
             emailAd = s.nextLine();
             registered = searchAccount(emailAd);
         }
-        return registered;
+        return emailAd;
+        
     }
 
     public int searchAccount(String email) {
@@ -268,5 +270,13 @@ public class Network{
             }
         }
         return null;
+    }
+    public int getNotifications(String email){
+        for(Account account : Accounts){
+            if(account.getEmail().equals(email)){
+               return account.getNotifications();
+            }
+        }
+        return 0;
     }
 }

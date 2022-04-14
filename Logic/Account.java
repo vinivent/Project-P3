@@ -1,12 +1,14 @@
 package Logic;
-//import java.util.ArrayList;
-//import java.util.List;
+
+import java.util.LinkedList;
 
 public class Account {
     private String email, password, username, birthdate, relationship;
-    
-    // private List<posts> posts;   
-    // private List<CreateAccount> accounts = new ArrayList<>();
+
+    private LinkedList<Account> RequestsList;
+    private LinkedList<String> Message;
+    private LinkedList<Account> FriendList; 
+
      
     public Account(String email, String username, String password, String birthdate) {
         this.email = email;
@@ -14,6 +16,9 @@ public class Account {
         this.username = username;
         this.birthdate = birthdate;
         relationship = "??";
+        FriendList = new LinkedList<Account>();
+        RequestsList = new LinkedList <Account>();
+        Message = new LinkedList <String>();
     }
 
     public String getEmail() {
@@ -56,23 +61,25 @@ public class Account {
     public void setRelationship(String relationship) {
         this.relationship = relationship;
     }
+
+    public LinkedList <Account> getFriendList(){
+        return FriendList;
+    }
+
+    public void setFriendList(LinkedList <Account> newList){
+        this.FriendList = newList; 
+    }
+
+    public int getNotifications() {
+        return RequestsList.size();
+    }
+
+    public LinkedList <Account> getRequestsList(){
+        return RequestsList;
+    } 
+    public void setRequestsList(LinkedList <Account> newRequests){
+        this.RequestsList = newRequests;
+    }
+
      
 }
-
-
-
-  // public boolean verificarSenha(String senha){
-    //     if(senha.length() < 6){
-    //         return false;
-    //     } else if (senha.length() >= 6) {
-    //         for (int i = 0; i < senha.length(); i++) {
-    //             if (Character.isDigit(senha.charAt(i))) {
-    //                 return true;
-    //             } else {
-    //                 return false;
-    //             }
-    //         }
-    //     }
-        
-    //     return true;
-    // } 
