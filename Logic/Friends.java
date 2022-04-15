@@ -143,6 +143,11 @@ public class Friends extends Network {
 
     public void sendInvite(String email, String friendEmail) {
         friendEmail = checkAccount(friendEmail);
+        while(!checkFriendList(email, friendEmail)){
+            System.out.print("You are already friend with this user try other email: ");
+            friendEmail = s.next();
+        }
+        friendEmail = checkAccount(friendEmail);
         while (email.equals(friendEmail)) {
             System.out.println("You can't add yourself.");
             System.out.print("Insert friend's email: ");
@@ -223,6 +228,20 @@ public class Friends extends Network {
             }
         }
         return "";
+    }
+
+    public boolean checkFriendList(String email, String friendEmail){
+        for(Account account: Accounts){
+            if(account.getEmail().equals(email)){
+                FriendList  = account.getFriendList();
+                for(Account friendAccount : FriendList){
+                    if(friendAccount.getEmail().equals(friendEmail)){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
 }

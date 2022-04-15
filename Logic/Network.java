@@ -151,9 +151,8 @@ public class Network {
                 break;
             case 5:
                 System.out.println("Insert your description: ");
-                String description;
                 s.nextLine();
-                description = s.nextLine();
+                String description = s.nextLine();
                 for (Account account : Accounts) {
                     if (account.getEmail().equals(email)) {
                         account.setDescription(description);
