@@ -6,7 +6,7 @@ public class Account {
     private String email, password, username, birthdate, relationship, description;
 
     private LinkedList<Account> RequestsList;
-    private LinkedList<Account> MessageList;
+    private LinkedList<StoreMessages> MessageList;
     private LinkedList<Account> FriendList;
   
 
@@ -15,11 +15,11 @@ public class Account {
         this.password = password;
         this.username = username;
         this.birthdate = birthdate;
-        relationship = "???";
-        description = "Missing description";
+        relationship = "== Missing description ==";
+        description = "== Missing description ==";
         FriendList = new LinkedList<Account>();
         RequestsList = new LinkedList<Account>();
-        MessageList = new LinkedList<Account>();
+        MessageList = new LinkedList<StoreMessages>();
     }
 
     public String getEmail() {
@@ -91,11 +91,11 @@ public class Account {
         this.RequestsList = newRequests;
     }
 
-    public LinkedList<Account> getMessageList() {
+    public LinkedList<StoreMessages> getMessageList() {
         return MessageList;
     }
 
-    public void setMessageList(LinkedList<Account> newMessage) {
+    public void setMessageList(LinkedList<StoreMessages> newMessage) {
         this.MessageList = newMessage;
     }
 

@@ -10,7 +10,7 @@ public class Message extends Network {
     public void sendMessage(String email, String friendEmail, String message) {
         for (Account Account : Accounts) {
             if (Account.getEmail().equals(email)) {
-                MessageList = Account.getMessageList();
+                MessageList = StoreMessages.getMessageList();
                 for (Account accountMessages : MessageList) {
                     if (accountMessages.getEmail().equals(friendEmail)) {
                         MessageList.add(accountMessages);
@@ -24,7 +24,7 @@ public class Message extends Network {
                 for (Account accountMessages : MessageList) {
                     if (accountMessages.getEmail().equals(email)) {
                         MessageList.add(accountMessages);
-                        Account.setFriendList(MessageList);
+                        Account.setMessageList(MessageList);
                     }
                 }
             }
