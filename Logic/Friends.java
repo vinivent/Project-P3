@@ -32,27 +32,27 @@ public class Friends extends Network {
                 showFriends(email);
                 break;
             case 4:
-                int quantRequest=1;
+                int quantRequest = 1;
                 char option = 'y';
-                while (option != 'n' && option != 'N' && quantRequest!=0) {
+                while (option != 'n' && option != 'N' && quantRequest != 0) {
                     showRequests(email);
-                        System.out.print("Would you like to answer a request? 'Y' or 'N': ");
-                        option = s.next().charAt(0);
-                        if (option != 'y' && option != 'Y' && option != 'n' && option != 'N') {
-                            System.out.println("Insert a valid option.");
-                            System.out.println("==========================");
+                    System.out.print("Would you like to answer a request? 'Y' or 'N': ");
+                    option = s.next().charAt(0);
+                    if (option != 'y' && option != 'Y' && option != 'n' && option != 'N') {
+                        System.out.println("Insert a valid option.");
+                        System.out.println("==========================");
+                    }
+                    if (option == 'y' || option == 'Y') {
+                        System.out.println("Which request would you like to answer? (Insert Number)");
+                        int num = s.nextInt();
+                        friendEmail = respondRequests(email, num);
+                        confirmSolicitation(email, friendEmail);
+                    }
+                    for (Account account : Accounts) {
+                        if (account.getEmail().equals(email)) {
+                            quantRequest = account.getNotifications();
                         }
-                        if (option == 'y' || option == 'Y') {
-                            System.out.println("Which request would you like to answer? (Insert Number)");
-                            int num = s.nextInt();
-                            friendEmail = respondRequests(email, num);
-                            confirmSolicitation(email, friendEmail);
-                        }
-                            for(Account account :Accounts){
-                                if(account.getEmail().equals(email)){
-                                    quantRequest = account.getNotifications();
-                                }
-                            }
+                    }
                 }
                 break;
             default:
@@ -143,30 +143,41 @@ public class Friends extends Network {
 
     public void sendInvite(String email, String friendEmail) {
         friendEmail = checkAccount(friendEmail);
-        while(!checkFriendList(email, friendEmail)){
-            System.out.print("You are already friend with this user try other email: ");
+
+        while (!checkFriendList(email, friendEmail)) {
+            System.out.println("You are already friend with this user try other email ");
+            System.out.print("Insert friend's email or type {LEAVE} to leave: ");
             friendEmail = s.next();
+
         }
-        friendEmail = checkAccount(friendEmail);
-        while (email.equals(friendEmail)) {
-            System.out.println("You can't add yourself.");
-            System.out.print("Insert friend's email: ");
+        while (!checkRequestList(email, friendEmail)) {
+            System.out.println("You are already sent a friend request ");
+            System.out.print("Insert friend's email or type {LEAVE} to leave: ");
             friendEmail = s.next();
-            System.out.println("");
+
+        }
+        if (!friendEmail.equalsIgnoreCase("leave")) {
             friendEmail = checkAccount(friendEmail);
-           
-        }
+            while (email.equals(friendEmail)) {
+                System.out.println("You can't add yourself.");
+                System.out.print("Insert friend's email: ");
+                friendEmail = s.next();
+                System.out.println("");
+                friendEmail = checkAccount(friendEmail);
 
-        for (Account account : Accounts) {
-            if (account.getEmail().equals(friendEmail)) {
-                RequestList = account.getRequestsList();
-                for (Account FriendAccount : Accounts) {
-                    if (FriendAccount.getEmail().equals(email)) {
-                        RequestList.add(FriendAccount);
-                        account.setRequestsList(RequestList);
+            }
+
+            for (Account account : Accounts) {
+                if (account.getEmail().equals(friendEmail)) {
+                    RequestList = account.getRequestsList();
+                    for (Account FriendAccount : Accounts) {
+                        if (FriendAccount.getEmail().equals(email)) {
+                            RequestList.add(FriendAccount);
+                            account.setRequestsList(RequestList);
+                        }
                     }
-                }
 
+                }
             }
         }
     }
@@ -230,12 +241,12 @@ public class Friends extends Network {
         return "";
     }
 
-    public boolean checkFriendList(String email, String friendEmail){
-        for(Account account: Accounts){
-            if(account.getEmail().equals(email)){
-                FriendList  = account.getFriendList();
-                for(Account friendAccount : FriendList){
-                    if(friendAccount.getEmail().equals(friendEmail)){
+    public boolean checkFriendList(String email, String friendEmail) {
+        for (Account account : Accounts) {
+            if (account.getEmail().equals(email)) {
+                FriendList = account.getFriendList();
+                for (Account friendAccount : FriendList) {
+                    if (friendAccount.getEmail().equals(friendEmail)) {
                         return false;
                     }
                 }
@@ -244,4 +255,17 @@ public class Friends extends Network {
         return true;
     }
 
+    public boolean checkRequestList(String email, String friendEmail) {
+        for (Account account : Accounts) {
+            if (account.getEmail().equals(friendEmail)) {
+                FriendList = account.getRequestsList();
+                for (Account friendAccount : FriendList) {
+                    if (friendAccount.getEmail().equals(email)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }
