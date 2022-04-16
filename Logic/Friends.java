@@ -44,7 +44,7 @@ public class Friends extends Network {
                             System.out.println("==========================");
                         }
                         if (option == 'y' || option == 'Y') {
-                            System.out.println("Which request would you like to answer? (Insert Number)");
+                            System.out.print("Which request would you like to answer? (Insert Number): ");
                             int num = s.nextInt();
                             friendEmail = respondRequests(email, num);
                             confirmSolicitation(email, friendEmail);
