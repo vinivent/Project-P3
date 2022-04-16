@@ -167,6 +167,8 @@ public class Friends extends Network {
             System.out.print("Insert friend's email or type {LEAVE} to leave: ");
             friendEmail = s.next();
 
+            
+
         }
         if (!friendEmail.equalsIgnoreCase("leave")) {
             friendEmail = checkAccount(friendEmail);

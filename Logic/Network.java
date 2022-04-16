@@ -60,9 +60,11 @@ public class Network {
             case 1:
                 char option = 'n';
                 String newUsername = "";
+               
                 do {
                     System.out.println("enter the new username: ");
-                    newUsername = s.next();
+                    s.nextLine();
+                    newUsername = s.nextLine();
                     System.out.println(newUsername + " Is correct? 'Y' or 'N'");
                     option = s.next().charAt(0);
                 } while (option != 'y' && option != 'Y');

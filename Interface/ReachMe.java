@@ -6,17 +6,15 @@ import Logic.Friends;
 import Logic.Message;
 import Logic.Network;
 
-
 public class ReachMe {
-      static Scanner s = new Scanner(System.in);
-      static Network account = new Network();
-      static Friends friend = new Friends();
-      static Message message = new Message();
-      
+    static Scanner s = new Scanner(System.in);
+    static Network account = new Network();
+    static Friends friend = new Friends();
+    static Message message = new Message();
 
     public static void main(String[] args) {
         byte op = 1;
-        
+
         do {
             System.out.println("");
             System.out.println("  ██████╗ ███████╗ █████╗  ██████╗██╗  ██╗███╗   ███╗███████╗");
@@ -32,10 +30,9 @@ public class ReachMe {
             switch (op) {
                 case 1:
                     account.createAccount();
-                    //conta.String();
                     break;
                 case 2:
-                   String email = account.logIn();
+                    String email = account.logIn();
                     online(email);
                     break;
                 case 0:
@@ -59,7 +56,7 @@ public class ReachMe {
 
     public static void welcome(String email) {
         String username = account.getUser(email);
- 
+
         System.out.println("");
         System.out.println("  ██████╗ ███████╗ █████╗  ██████╗██╗  ██╗███╗   ███╗███████╗");
         System.out.println("  ██╔══██╗██╔════╝██╔══██╗██╔════╝██║  ██║████╗ ████║██╔════╝");
@@ -67,8 +64,8 @@ public class ReachMe {
         System.out.println("  ██╔══██╗██╔══╝  ██╔══██║██║     ██╔══██║██║╚██╔╝██║██╔══╝  ");
         System.out.println("  ██║  ██║███████╗██║  ██║╚██████╗██║  ██║██║ ╚═╝ ██║███████╗");
         System.out.println("  ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝");
-        System.out.println("               {ReachMe - Welcome " + username +"}           ");
-        
+        System.out.println("               {ReachMe - Welcome " + username + "}           ");
+
     }
 
     public static void menuOnline() {
@@ -84,20 +81,21 @@ public class ReachMe {
         System.out.println("");
         System.out.println("  ========================================================= ");
         System.out.println("     {1} ADD FRIEND ~ {2} REMOVE FRIEND ~ {3} SHOW FRIENDS");
-        System.out.println("                      {4} NOTIFICATIONS [" + account.getNotifications(email)+ "]");
+        System.out.println("                      {4} NOTIFICATIONS [" + account.getNotifications(email) + "]");
         System.out.print("                        Choose an option: ");
         System.out.print("");
     }
-    public static void online(String email){
+
+    public static void online(String email) {
         Scanner s = new Scanner(System.in);
-        byte op = 1;
- 
+        byte op = 0;
+
         do {
             welcome(email);
             menuOnline();
             op = s.nextByte();
 
-            switch (op)  {
+            switch (op) {
                 case 1:
                     account.editAccount(email);
                     break;
@@ -112,18 +110,17 @@ public class ReachMe {
                     account.Profile(email);
                     break;
                 case 0:
-                    System.out.println("See you soon.");;
+                    System.out.println("See you soon.");
                     break;
-            
+
                 default:
                     System.out.println("Insert a valid option");
                     break;
             }
-           
-        } while ( op!=0 );
-        
+
+        } while (op != 0);
+        s.close();
+
     }
 
-
-    
 }
