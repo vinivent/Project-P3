@@ -8,15 +8,14 @@ public class Account {
     private LinkedList<Account> RequestsList;
     private LinkedList<StoreMessages> MessageList;
     private LinkedList<Account> FriendList;
-  
 
     public Account(String email, String username, String password, String birthdate) {
         this.email = email;
         this.password = password;
         this.username = username;
         this.birthdate = birthdate;
-        relationship = "== Missing description ==";
-        description = "== Missing description ==";
+        relationship = "???";
+        description = "Missing description";
         FriendList = new LinkedList<Account>();
         RequestsList = new LinkedList<Account>();
         MessageList = new LinkedList<StoreMessages>();
@@ -91,12 +90,12 @@ public class Account {
         this.RequestsList = newRequests;
     }
 
-    public LinkedList<StoreMessages> getMessageList() {
+    public LinkedList<StoreMessages> getMessageList(){
         return MessageList;
     }
 
-    public void setMessageList(LinkedList<StoreMessages> newMessage) {
-        this.MessageList = newMessage;
+    public void setMessageList(LinkedList<StoreMessages> newMessageList){
+        this.MessageList = newMessageList;
     }
 
 }

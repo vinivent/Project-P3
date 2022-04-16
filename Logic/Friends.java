@@ -6,6 +6,7 @@ import java.util.LinkedList;
 public class Friends extends Network {
     LinkedList<Account> FriendList = new LinkedList<>();
     LinkedList<Account> RequestList = new LinkedList<>();
+    LinkedList<StoreMessages> MessageList = new LinkedList<>();
     Scanner s = new Scanner(System.in);
 
     public void optionFriends(String email) {
@@ -32,27 +33,27 @@ public class Friends extends Network {
                 showFriends(email);
                 break;
             case 4:
-                int quantRequest = 1;
+                int quantRequest=1;
                 char option = 'y';
-                while (option != 'n' && option != 'N' && quantRequest != 0) {
+                while (option != 'n' && option != 'N' && quantRequest!=0) {
                     showRequests(email);
-                    System.out.print("Would you like to answer a request? 'Y' or 'N': ");
-                    option = s.next().charAt(0);
-                    if (option != 'y' && option != 'Y' && option != 'n' && option != 'N') {
-                        System.out.println("Insert a valid option.");
-                        System.out.println("==========================");
-                    }
-                    if (option == 'y' || option == 'Y') {
-                        System.out.println("Which request would you like to answer? (Insert Number)");
-                        int num = s.nextInt();
-                        friendEmail = respondRequests(email, num);
-                        confirmSolicitation(email, friendEmail);
-                    }
-                    for (Account account : Accounts) {
-                        if (account.getEmail().equals(email)) {
-                            quantRequest = account.getNotifications();
+                        System.out.print("Would you like to answer a request? 'Y' or 'N': ");
+                        option = s.next().charAt(0);
+                        if (option != 'y' && option != 'Y' && option != 'n' && option != 'N') {
+                            System.out.println("Insert a valid option.");
+                            System.out.println("==========================");
                         }
-                    }
+                        if (option == 'y' || option == 'Y') {
+                            System.out.println("Which request would you like to answer? (Insert Number)");
+                            int num = s.nextInt();
+                            friendEmail = respondRequests(email, num);
+                            confirmSolicitation(email, friendEmail);
+                        }
+                            for(Account account :Accounts){
+                                if(account.getEmail().equals(email)){
+                                    quantRequest = account.getNotifications();
+                                }
+                            }
                 }
                 break;
             default:
@@ -71,6 +72,11 @@ public class Friends extends Network {
                         FriendList.add(friendAccount);
                         Account.setFriendList(FriendList);
                         System.out.println("Now you're friends with " + getUser(friendEmail));
+                        //inicializando chat
+                        MessageList = Account.getMessageList();
+                        StoreMessages startChat= new StoreMessages(friendEmail);
+                        MessageList.add(startChat);
+                        Account.setMessageList(MessageList);
                     }
                 }
             }
@@ -80,6 +86,11 @@ public class Friends extends Network {
                     if (friendAccount.getEmail().equals(email)) {
                         FriendList.add(friendAccount);
                         Account.setFriendList(FriendList);
+                        //inicializando chat
+                        MessageList = Account.getMessageList();
+                        StoreMessages startChat= new StoreMessages(email);
+                        MessageList.add(startChat);
+                        Account.setMessageList(MessageList);
                     }
                 }
             }
@@ -241,12 +252,12 @@ public class Friends extends Network {
         return "";
     }
 
-    public boolean checkFriendList(String email, String friendEmail) {
-        for (Account account : Accounts) {
-            if (account.getEmail().equals(email)) {
-                FriendList = account.getFriendList();
-                for (Account friendAccount : FriendList) {
-                    if (friendAccount.getEmail().equals(friendEmail)) {
+    public boolean checkFriendList(String email, String friendEmail){
+        for(Account account: Accounts){
+            if(account.getEmail().equals(email)){
+                FriendList  = account.getFriendList();
+                for(Account friendAccount : FriendList){
+                    if(friendAccount.getEmail().equals(friendEmail)){
                         return false;
                     }
                 }
