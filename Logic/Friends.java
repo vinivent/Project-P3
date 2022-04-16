@@ -36,6 +36,7 @@ public class Friends extends Network {
                 int quantRequest=1;
                 char option = 'y';
                 while (option != 'n' && option != 'N' && quantRequest!=0) {
+                    System.out.println("==PENDING==");
                     showRequests(email);
                         System.out.print("Would you like to answer a request? 'Y' or 'N': ");
                         option = s.next().charAt(0);
