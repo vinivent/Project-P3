@@ -30,7 +30,6 @@ public class ReachMe {
             switch (op) {
                 case 1:
                     account.createAccount();
-                    // conta.String();
                     break;
                 case 2:
                     String email = account.logIn();
