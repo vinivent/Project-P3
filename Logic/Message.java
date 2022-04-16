@@ -10,10 +10,11 @@ public class Message extends Network {
 
     public void optionMessages(String email){
         showMessageList(email);
-        int op=1;
-        op = s.nextInt();
-        
-        
+        System.out.println("Insert friend's Email or type {LEAVECHAT} to leave:");
+        String friendEmail=s.next();
+        if(!friendEmail.equalsIgnoreCase("leavechat")){
+            sendMessage(email, friendEmail);
+        }
     }
 
     public void addMessage(String email, String friendEmail, String message) {
@@ -24,7 +25,7 @@ public class Message extends Network {
                 for (StoreMessages accountMessages : StoreMessage) {
                     if (accountMessages.getRecivedUser().equals(friendEmail)) {
                         MessageList = accountMessages.getMessageHistory();
-                        MessageList.add(message);
+                        MessageList.add(getUser(email) + ": " + message);
                         accountMessages.setMessageHistory(MessageList);
                     }
                 }
@@ -36,7 +37,7 @@ public class Message extends Network {
                 for (StoreMessages accountMessages : StoreMessage) {
                     if (accountMessages.getRecivedUser().equals(email)) {
                         MessageList = accountMessages.getMessageHistory();
-                        MessageList.add(message);
+                        MessageList.add(getUser(email) + ": " + message);
                         accountMessages.setMessageHistory(MessageList);
                     }
                 }
@@ -46,28 +47,34 @@ public class Message extends Network {
     }
 
     public void sendMessage(String email, String friendEmail) {
-        System.out.println("Write your message: ");
-        s.nextLine();
-        String message = s.nextLine();
-        addMessage(email, friendEmail, message);
+        String message ="";
+        System.out.println("Write your message or type {LEAVECHAT} to leave: ");
+        message = s.nextLine();
+        while(!message.equalsIgnoreCase("leavechat")){
+            showMessages(email, friendEmail);
+            message = s.nextLine();
+            addMessage(email, friendEmail, message);
+        }
     }
 
-    public void showMessages(String email, int num) {
-        int position = 1;
+    public void showMessages(String email,String friendEmail) {
+
         for(Account account : Accounts){
             if(account.getEmail().equals(email)){
                 StoreMessage = account.getMessageList();
                 for(StoreMessages accountMessages : StoreMessage){
-                    position++;
-                    if(position == num){
+                    if(accountMessages.getRecivedUser().equals(friendEmail)){
                         MessageList = accountMessages.getMessageHistory();
+                        System.out.println("===================================================");
                         for(String message : MessageList){
                             System.out.println(message);
                         }
-                    }
+                    }    
+
                 }
             }
         }
+
     }
 
     public void showMessageList(String email){
@@ -76,18 +83,17 @@ public class Message extends Network {
                 StoreMessage = account.getMessageList();
                 int num = 1;
                 for(StoreMessages accountMessages : StoreMessage){
-                    System.out.println("{"+ num + "} " + getUser(accountMessages.getRecivedUser()) );
+                    System.out.println("{"+ num + "} " + accountMessages.getRecivedUser() );
                     num++;
                 }
             }
         }
     }
 
+    
 
-    // for(Account account : Accounts){
-    //     if(account.getEmail().equals(email)){
-           
-    //     }
-    // }
+
+
+
 
 }
