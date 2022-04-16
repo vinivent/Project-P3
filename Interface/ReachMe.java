@@ -11,7 +11,7 @@ public class ReachMe {
     static Network account = new Network();
     static Friends friend = new Friends();
     static Message message = new Message();
-    
+
 
     public static void main(String[] args) {
         byte op = 1;
@@ -120,7 +120,7 @@ public class ReachMe {
             }
 
         } while (op != 0);
-        s.close();
+      //  s.close();
 
     }
 
