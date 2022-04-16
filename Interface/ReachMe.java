@@ -40,6 +40,7 @@ public class ReachMe {
                     break;
                 case 0:
                     System.out.println("See you soon.");
+                    
                     break;
                 default:
                     System.out.println("Insert a valid option.");
