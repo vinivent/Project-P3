@@ -9,4 +9,6 @@
 - Maintain the flow of messages between system users.
 
 
+Group: Ângelo Thiago, Raí Soares, Raul Miguel and Vinícius Ventura.
+
 
