@@ -4,38 +4,90 @@ import java.util.Scanner;
 import java.util.LinkedList;
 
 public class Message extends Network {
-    LinkedList <Account> MessageList = new LinkedList<>();
+    LinkedList <StoreMessages> StoreMessage = new LinkedList<>();
+    LinkedList <String> MessageList = new LinkedList<>();
     Scanner s = new Scanner(System.in);
 
-    public void sendMessage(String email, String friendEmail, String message) {
+    public void optionMessages(String email){
+        showMessageList(email);
+        int op=1;
+        op = s.nextInt();
+        
+        
+    }
+
+    public void addMessage(String email, String friendEmail, String message) {
+        
         for (Account Account : Accounts) {
             if (Account.getEmail().equals(email)) {
-                MessageList = StoreMessages.getMessageList();
-                for (Account accountMessages : MessageList) {
-                    if (accountMessages.getEmail().equals(friendEmail)) {
-                        MessageList.add(accountMessages);
-                        Account.setMessageList(MessageList);
-                        System.out.println("Message sent to " + getUser(friendEmail));
+                StoreMessage = Account.getMessageList();
+                for (StoreMessages accountMessages : StoreMessage) {
+                    if (accountMessages.getRecivedUser().equals(friendEmail)) {
+                        MessageList = accountMessages.getMessageHistory();
+                        MessageList.add(message);
+                        accountMessages.setMessageHistory(MessageList);
                     }
                 }
             }
+        }
+        for (Account Account : Accounts) {
             if (Account.getEmail().equals(friendEmail)) {
-                MessageList = Account.getMessageList();
-                for (Account accountMessages : MessageList) {
-                    if (accountMessages.getEmail().equals(email)) {
-                        MessageList.add(accountMessages);
-                        Account.setMessageList(MessageList);
+                StoreMessage = Account.getMessageList();
+                for (StoreMessages accountMessages : StoreMessage) {
+                    if (accountMessages.getRecivedUser().equals(email)) {
+                        MessageList = accountMessages.getMessageHistory();
+                        MessageList.add(message);
+                        accountMessages.setMessageHistory(MessageList);
+                    }
+                }
+            }
+        }
+        
+    }
+
+    public void sendMessage(String email, String friendEmail) {
+        System.out.println("Write your message: ");
+        s.nextLine();
+        String message = s.nextLine();
+        addMessage(email, friendEmail, message);
+    }
+
+    public void showMessages(String email, int num) {
+        int position = 1;
+        for(Account account : Accounts){
+            if(account.getEmail().equals(email)){
+                StoreMessage = account.getMessageList();
+                for(StoreMessages accountMessages : StoreMessage){
+                    position++;
+                    if(position == num){
+                        MessageList = accountMessages.getMessageHistory();
+                        for(String message : MessageList){
+                            System.out.println(message);
+                        }
                     }
                 }
             }
         }
     }
 
-    public void replyMessage(String friendEmail, String message) {
-
+    public void showMessageList(String email){
+        for(Account account : Accounts){
+            if(account.getEmail().equals(email)){
+                StoreMessage = account.getMessageList();
+                int num = 1;
+                for(StoreMessages accountMessages : StoreMessage){
+                    System.out.println("{"+ num + "} " + getUser(accountMessages.getRecivedUser()) );
+                    num++;
+                }
+            }
+        }
     }
 
-    public void showMessages(String email) {
-        
-    }
+
+    // for(Account account : Accounts){
+    //     if(account.getEmail().equals(email)){
+           
+    //     }
+    // }
+
 }

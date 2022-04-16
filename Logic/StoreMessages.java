@@ -4,14 +4,12 @@ import java.util.LinkedList;
 
 public class StoreMessages {
     private LinkedList<String> messageHistory;
-    private Account sentUser;
-    private Account recivedUser;
+    private String friendEmail;
 
 
-    public StoreMessages(Account sentUser, Account recivedUser) {
+    public StoreMessages(String Friend) {
+        this.friendEmail = Friend;
         this.messageHistory = new LinkedList<String>();
-        this.sentUser = sentUser;
-        this.recivedUser = recivedUser;
     }
 
     public LinkedList<String> getMessageHistory() {
@@ -22,20 +20,12 @@ public class StoreMessages {
         this.messageHistory = messageHistory;
     }
 
-    public Account getSentUser() {
-        return this.sentUser;
+    public String getRecivedUser() {
+        return this.friendEmail;
     }
 
-    public void setSentUser(Account sentUser) {
-        this.sentUser = sentUser;
-    }
-
-    public Account getRecivedUser() {
-        return this.recivedUser;
-    }
-
-    public void setRecivedUser(Account recivedUser) {
-        this.recivedUser = recivedUser;
+    public void setRecivedUser(String recivedUser) {
+        this.friendEmail = recivedUser;
     }
 
 }
