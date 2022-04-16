@@ -30,7 +30,6 @@ public class ReachMe {
             switch (op) {
                 case 1:
                     account.createAccount();
-                    // conta.String();
                     break;
                 case 2:
                     String email = account.logIn();
@@ -88,7 +87,7 @@ public class ReachMe {
 
     public static void online(String email) {
         Scanner s = new Scanner(System.in);
-        byte op = 1;
+        byte op = 0;
 
         do {
             welcome(email);
@@ -111,7 +110,6 @@ public class ReachMe {
                     break;
                 case 0:
                     System.out.println("See you soon.");
-                    ;
                     break;
 
                 default:
