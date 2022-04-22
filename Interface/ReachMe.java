@@ -1,5 +1,6 @@
 package Interface;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Logic.Friends;
@@ -14,19 +15,29 @@ public class ReachMe {
 
 
     public static void main(String[] args) {
-        byte op = 1;
+        byte op = 0;
 
         do {
             System.out.println("");
             System.out.println("  ██████╗ ███████╗ █████╗  ██████╗██╗  ██╗███╗   ███╗███████╗");
             System.out.println("  ██╔══██╗██╔════╝██╔══██╗██╔════╝██║  ██║████╗ ████║██╔════╝");
-            System.out.println("  ██████╔╝█████╗  ███████║██║     ███████║██╔████╔██║█████╗ ");
+            System.out.println("  ██████╔╝█████╗  ███████║██║     ███████║██╔████╔██║█████╗  ");
             System.out.println("  ██╔══██╗██╔══╝  ██╔══██║██║     ██╔══██║██║╚██╔╝██║██╔══╝  ");
             System.out.println("  ██║  ██║███████╗██║  ██║╚██████╗██║  ██║██║ ╚═╝ ██║███████╗");
             System.out.println("  ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝");
-            System.out.println("             {ReachMe - a UNICAP Social Media}                  ");
+            System.out.println("             {ReachMe - a UNICAP Social Media}               ");
             menu1();
-            op = s.nextByte();
+
+            do{
+                try{
+                op = s.nextByte();
+                }catch(InputMismatchException e){
+                    System.out.println("Escreva um Número");
+                    s.nextLine();
+                    op=0;
+                }
+            }while(op==0);
+            
 
             switch (op) {
                 case 1:
