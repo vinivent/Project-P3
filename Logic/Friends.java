@@ -1,6 +1,7 @@
 package Logic;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 
 public class Friends extends Network {
@@ -10,8 +11,19 @@ public class Friends extends Network {
     Scanner s = new Scanner(System.in);
 
     public void optionFriends(String email) {
-        byte op = 0;
-        op = s.nextByte();
+        byte op = 9;
+
+        do{
+            try{
+            op = s.nextByte();
+            }catch(InputMismatchException e){
+                System.out.println("Escreva um Número");
+                s.nextLine();
+                op=9;
+            }
+        }while(op==9);
+
+
         switch (op) {
             case 1:
                 System.out.print("Insert friend's email: ");

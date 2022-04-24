@@ -1,5 +1,6 @@
 package Logic;
 
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -44,7 +45,7 @@ public class Network {
 
     // Edit ACCOUNT
     public void editAccount(String email) {
-        byte op = 1;
+        byte op = 9;
         System.out.println("=========================");
         System.out.println("What you want to edit?");
         System.out.println("{1} Username ");
@@ -55,7 +56,19 @@ public class Network {
         System.out.println("{0} Back to menu");
         System.out.println("=========================");
         System.out.print("Choose an option: ");
-        op = s.nextByte();
+
+
+        do{
+            try{
+            op = s.nextByte();
+            }catch(InputMismatchException e){
+                System.out.println("Escreva um Número");
+                s.nextLine();
+                op=9;
+            }
+        }while(op==9);
+
+
         switch (op) {
             case 1:
                 char option = 'n';
@@ -113,7 +126,7 @@ public class Network {
                 }
                 break;
             case 4:
-                byte opt = 1;
+                byte opt = 9;
                 System.out.println("=========================");
                 System.out.println("What you want to edit?");
                 System.out.println("{1} Dating");
@@ -121,7 +134,17 @@ public class Network {
                 System.out.println("{3} Single");
                 System.out.println("{0} Back to menu");
                 System.out.println("=========================");
-                opt = s.nextByte();
+
+                do{
+                    try{
+                    op = s.nextByte();
+                    }catch(InputMismatchException e){
+                        System.out.println("Escreva um Número");
+                        s.nextLine();
+                        op=9;
+                    }
+                }while(op==9);
+
                 switch (opt) {
                     case 1:
                         for (Account account : Accounts) {

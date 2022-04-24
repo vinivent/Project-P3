@@ -15,7 +15,7 @@ public class ReachMe {
 
 
     public static void main(String[] args) {
-        byte op = 0;
+        byte op = 9;
 
         do {
             System.out.println("");
@@ -34,9 +34,9 @@ public class ReachMe {
                 }catch(InputMismatchException e){
                     System.out.println("Escreva um Número");
                     s.nextLine();
-                    op=0;
+                    op=9;
                 }
-            }while(op==0);
+            }while(op==9);
             
 
             switch (op) {
@@ -100,12 +100,22 @@ public class ReachMe {
 
     public static void online(String email) {
         Scanner s = new Scanner(System.in);
-        byte op = 0;
+        byte op = 9;
 
         do {
             welcome(email);
             menuOnline();
-            op = s.nextByte();
+
+            do{
+                try{
+                op = s.nextByte();
+                }catch(InputMismatchException e){
+                    System.out.println("Escreva um Número");
+                    s.nextLine();
+                    op=9;
+                }
+            }while(op==9);
+
 
             switch (op) {
                 case 1:
@@ -131,7 +141,7 @@ public class ReachMe {
             }
 
         } while (op != 0);
-      //  s.close();
+      
 
     }
 
