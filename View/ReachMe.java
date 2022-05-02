@@ -1,11 +1,11 @@
-package Interface;
+package View;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Logic.Friends;
-import Logic.Message;
-import Logic.Network;
+import Controller.Friends;
+import Controller.Message;
+import Controller.Network;
 
 public class ReachMe {
     static Scanner s = new Scanner(System.in);

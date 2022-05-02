@@ -1,6 +1,10 @@
-package Logic;
+package Controller;
 
 import java.util.Scanner;
+
+import Model.Account;
+import Model.StoreMessages;
+
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 

@@ -1,10 +1,12 @@
-package Logic;
+package Controller;
 
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import Model.Account;
 
 public class Network {
     protected static LinkedList<Account> Accounts = new LinkedList<Account>();
