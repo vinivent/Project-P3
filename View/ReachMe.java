@@ -5,11 +5,12 @@ import java.util.Scanner;
 
 import Controller.Friends;
 import Controller.Message;
-import Controller.Network;
+//import Controller.Network;
+import Controller.EditAccount;
 
 public class ReachMe {
     static Scanner s = new Scanner(System.in);
-    static Network account = new Network();
+    static EditAccount account = new EditAccount();
     static Friends friend = new Friends();
     static Message message = new Message();
 
@@ -119,7 +120,7 @@ public class ReachMe {
 
             switch (op) {
                 case 1:
-                    account.editAccount(email);
+                    account.editAcc(email);
                     break;
                 case 2:
                     menuFriends(email);
