@@ -5,12 +5,14 @@ import java.util.Scanner;
 
 import Controller.Friends;
 import Controller.Message;
-//import Controller.Network;
+import Controller.Network;
+import Model.Account;
 import Controller.EditAccount;
 
 public class ReachMe {
     static Scanner s = new Scanner(System.in);
-    static EditAccount account = new EditAccount();
+    static EditAccount editAccount = new EditAccount();
+    static Network account = new Network();
     static Friends friend = new Friends();
     static Message message = new Message();
 
@@ -42,10 +44,10 @@ public class ReachMe {
 
             switch (op) {
                 case 1:
-                    account.createAccount();
+                    createAccount();
                     break;
                 case 2:
-                    String email = account.logIn();
+                    String email = logIn();
                     online(email);
                     break;
                 case 0:
@@ -100,7 +102,6 @@ public class ReachMe {
     }
 
     public static void online(String email) {
-        Scanner s = new Scanner(System.in);
         byte op = 9;
 
         do {
@@ -120,7 +121,7 @@ public class ReachMe {
 
             switch (op) {
                 case 1:
-                    account.editAcc(email);
+                    editAccount.editAcc(email);
                     break;
                 case 2:
                     menuFriends(email);
@@ -130,7 +131,7 @@ public class ReachMe {
                     message.optionMessages(email);
                     break;
                 case 4:
-                    account.Profile(email);
+                    profile(email);
                     break;
                 case 0:
                     System.out.println("See you soon.");
@@ -146,4 +147,77 @@ public class ReachMe {
 
     }
 
+    public static void createAccount() {
+        System.out.println("EMAIL: ");
+        s.nextLine();
+        String email = s.nextLine();
+        while(!account.isMail(email) || !account.insert_mail(email)){
+            if(!account.isMail(email)){
+                System.out.println("========================");
+                System.out.println("Please insert a valid email.");
+                System.out.print("EMAIL: ");
+                email = s.nextLine();
+            }else{
+                System.out.println("========================");
+                System.out.println("This email is already registered");
+                System.out.println("Please insert a valid email.");
+                System.out.print("EMAIL: ");
+                email = s.nextLine();
+                
+            }
+        }
+        System.out.println("========================");
+        System.out.print("USERNAME: ");
+        String username = s.nextLine();
+        System.out.println("========================");
+        System.out.print("PASSWORD: ");
+        String password = s.nextLine();
+        System.out.println("========================");
+        System.out.println("DD/MM/YYYY");
+        System.out.println("BIRTHDATE: ");
+        String birthdate = s.nextLine();
+        while (!account.isDate(birthdate)) {
+            System.out.println("Insert a valid birthdate");
+            System.out.println("DD/MM/YYYY");
+            System.out.println("BIRTHDATE: ");
+            birthdate = s.nextLine();
+        }
+        account.createAccount(email, username, password, birthdate);
+    }
+
+    public static String logIn() {
+        System.out.println("Insert your email: ");
+        s.nextLine();
+        String email = s.nextLine();
+        while(account.findAccount(email) == null){
+            System.out.print("Email not registered, try again: ");
+            email = s.nextLine();
+        }
+        System.out.println("========================");
+        System.out.println("PASSWORD: ");
+        String password = s.nextLine();
+        while(!account.searchPassword(password)){
+            System.out.println("Invalid password");
+            password = s.nextLine();
+        }
+
+        return email;
+    }
+
+    // Testes
+    public static void profile(String email) {
+        System.out.println();
+        Account accountTest = account.findAccount(email);
+            if (accountTest.getEmail().equals(email)) {
+                System.out.println("===========================");
+                System.out.println("Username: " + accountTest.getUsername());
+                System.out.println("Birthdate: " + accountTest.getBirthdate());
+                System.out.println("Relationship: " + accountTest.getRelationship());
+                System.out.println("Bio: " + accountTest.getDescription());
+                System.out.println("===========================");
+
+            }
+        
+
+    }
 }

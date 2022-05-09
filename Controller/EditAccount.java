@@ -57,7 +57,12 @@ public class EditAccount extends Network {
 
                 System.out.println("Insert the old Password");
                 oldPassword = s.next();
-                checkPassword(oldPassword);
+
+                while(searchPassword(oldPassword)){
+                    System.out.println("Invalid password");
+                    oldPassword = s.nextLine();
+                }
+
                 System.out.println("Insert the new Password");
                 newPassword = s.next();
                 while (oldPassword.equals(newPassword)) {

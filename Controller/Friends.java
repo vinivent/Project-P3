@@ -115,13 +115,23 @@ public class Friends extends Network {
     }
 
     public boolean removeFriend(String email, String friendEmail) {
-        friendEmail = checkAccount(friendEmail);
+        if(findAccount(friendEmail) == null) {
+            return false;
+        }
+        while(!searchAccount(friendEmail)){
+            System.out.println("Email not found");
+            friendEmail = s.nextLine();
+        }
         while (email.equals(friendEmail)) {
             System.out.println("You can't remove yourself.");
             System.out.print("Insert friend's email: ");
             friendEmail = s.next();
             System.out.println("");
-            friendEmail = checkAccount(friendEmail);
+            while(!searchAccount(friendEmail)){
+                System.out.println("Email not found");
+                friendEmail = s.nextLine();
+            }
+            
         }
         for (Account Account : Accounts) {
             if (Account.getEmail().equals(email)) {
@@ -170,7 +180,10 @@ public class Friends extends Network {
     }
 
     public void sendInvite(String email, String friendEmail) {
-        friendEmail = checkAccount(friendEmail);
+        while(!searchAccount(friendEmail)){
+            System.out.println("Email not found");
+            friendEmail = s.nextLine();
+        }
 
         while (!checkFriendList(email, friendEmail)) {
             System.out.println("You are already friend with this user try other email ");
@@ -187,13 +200,19 @@ public class Friends extends Network {
 
         }
         if (!friendEmail.equalsIgnoreCase("leave")) {
-            friendEmail = checkAccount(friendEmail);
+            while(!searchAccount(friendEmail)){
+                System.out.println("Email not found");
+                friendEmail = s.nextLine();
+            }
             while (email.equals(friendEmail)) {
                 System.out.println("You can't add yourself.");
                 System.out.print("Insert friend's email: ");
                 friendEmail = s.next();
                 System.out.println("");
-                friendEmail = checkAccount(friendEmail);
+                while(!searchAccount(friendEmail)){
+                    System.out.println("Email not found");
+                    friendEmail = s.nextLine();
+                }
 
             }
 

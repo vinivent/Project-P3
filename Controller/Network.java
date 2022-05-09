@@ -13,78 +13,21 @@ public class Network {
     static Scanner s = new Scanner(System.in);
 
     // Create account
-    public void createAccount() {
-
-        System.out.println("EMAIL: ");
-        String email = s.nextLine();
-        while (!insert_mail(email)) {
-            System.out.println("========================");
-            System.out.println("Please insert a valid email.");
-            System.out.print("EMAIL: ");
-            email = s.nextLine();
-        }
-        System.out.println("========================");
-        System.out.print("USERNAME: ");
-        String username = s.nextLine();
-        System.out.println("========================");
-        System.out.print("PASSWORD: ");
-        String password = s.nextLine();
-        System.out.println("========================");
-        System.out.println("DD/MM/YYYY");
-        System.out.println("BIRTHDATE: ");
-        String birthdate = s.nextLine();
-        while (!isDate(birthdate)) {
-            System.out.println("Insert a valid birthdate");
-            System.out.println("DD/MM/YYYY");
-            System.out.println("BIRTHDATE: ");
-            birthdate = s.nextLine();
-        }
+    public void createAccount(String email,String username, String password, String birthdate) {
         Account a = new Account(email, username, password, birthdate);
         Accounts.add(a);
 
     }
 
-    // LogIn
-    public String logIn() {
-        System.out.println("Insert your email: ");
-        String email = s.nextLine();
-        checkAccount(email);
-        System.out.println("========================");
-        System.out.println("PASSWORD: ");
-        String password = s.nextLine();
-        checkPassword(password);
-        return email;
-    }
 
-    // Testes
-    public void Profile(String email) {
-        System.out.println();
-        for (Account account : Accounts) {
-            if ((account.getEmail()).equals(email)) {
-                System.out.println("===========================");
-                System.out.println("Username: " + account.getUsername());
-                System.out.println("Birthdate: " + account.getBirthdate());
-                System.out.println("Relationship: " + account.getRelationship());
-                System.out.println("Bio: " + account.getDescription());
-                System.out.println("===========================");
-
-            }
-        }
-
-    }
 
     public boolean insert_mail(String email) {
-        if (!isMail(email)) {
-            return false;
-        } else {
             for (Account account : Accounts) {
                 if ((account.getEmail()).equals(email)) {
-                    System.out.println("This email is already registered");
                     return false;
                 }
             }
             return true;
-        }
     }
 
     public boolean isMail(String email) {
@@ -104,46 +47,25 @@ public class Network {
         return matcher.matches();
     }
 
-    public String checkAccount(String emailAd) {
-
-        int registered = searchAccount(emailAd);
-        while (registered == -1) {
-            System.out.print("Email not registered, try again: ");
-            emailAd = s.nextLine();
-            registered = searchAccount(emailAd);
-        }
-        return emailAd;
-
-    }
-
-    public int searchAccount(String email) {
+    public boolean searchAccount(String email) {
         for (Account account : Accounts) {
             if ((account.getEmail()).equals(email)) {
-                return 1;
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 
-    public int searchPassword(String password) {
+    public boolean searchPassword(String password) {
         for (Account account : Accounts) {
             if ((account.getPassword()).equals(password)) {
-                return 1;
+                return true;
             }
         }
-        return -1;
+        return false;
     }
 
-    public int checkPassword(String passwordUser) {
-
-        int registered = searchPassword(passwordUser);
-        while (registered == -1) {
-            System.out.println("Invalid password, try again.");
-            passwordUser = s.nextLine();
-            registered = searchPassword(passwordUser);
-        }
-        return registered;
-    }
+    
 
     public String getUser(String email) {
         for (Account account : Accounts) {
@@ -166,6 +88,15 @@ public class Network {
             }
         }
         return 0;
+    }
+
+    public Account findAccount(String email){
+        for(Account account : Accounts){
+            if(account.getEmail().equals(email)){
+                return account;
+            }
+        }
+        return null;
     }
 
 
