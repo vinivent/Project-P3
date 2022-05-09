@@ -121,7 +121,7 @@ public class ReachMe {
 
             switch (op) {
                 case 1:
-                    editAccount.editAcc(email);
+                    editAcc(email);
                     break;
                 case 2:
                     menuFriends(email);
@@ -196,7 +196,7 @@ public class ReachMe {
         System.out.println("========================");
         System.out.println("PASSWORD: ");
         String password = s.nextLine();
-        while(!account.searchPassword(password)){
+        while(!account.searchPassword(email, password)){
             System.out.println("Invalid password");
             password = s.nextLine();
         }
@@ -218,6 +218,135 @@ public class ReachMe {
 
             }
         
+
+    }
+
+    // Edit account 
+    public static void editAcc(String email) {
+        byte op = 9;
+        System.out.println("=========================");
+        System.out.println("What you want to edit?");
+        System.out.println("{1} Username ");
+        System.out.println("{2} Password");
+        System.out.println("{3} Birthdate");
+        System.out.println("{4} Relationship");
+        System.out.println("{5} Add Description");
+        System.out.println("{0} Back to menu");
+        System.out.println("=========================");
+        System.out.print("Choose an option: ");
+
+
+        do{
+            try{
+            op = s.nextByte();
+            }catch(InputMismatchException e){
+                System.out.println("Escreva um Número");
+                s.nextLine();
+                op=9;
+            }
+        }while(op==9);
+
+
+        switch (op) {
+            case 1:
+                char option = 'n';
+                String newUsername = "";
+               
+                do {
+                    System.out.println("enter the new username: ");
+                    s.nextLine();
+                    newUsername = s.nextLine();
+                    System.out.println(newUsername + " Is correct? 'Y' or 'N'");
+                    option = s.next().charAt(0);
+                } while (option != 'y' && option != 'Y');
+
+                editAccount.editUser(email, newUsername);
+                break;
+            case 2:
+                String oldPassword = "", newPassword = "";
+
+                System.out.println("Insert the old Password");
+                oldPassword = s.next();
+
+                while(editAccount.searchPassword(email, oldPassword)){
+                    System.out.println("Invalid password");
+                    oldPassword = s.nextLine();
+                }
+
+                System.out.println("Insert the new Password");
+                newPassword = s.next();
+                while (oldPassword.equals(newPassword)) {
+                    System.out.println("the new password cannot be the same as the old one");
+                    newPassword = s.next();
+                }
+                
+                editAccount.editPassword(email, newPassword);
+
+                break;
+            case 3:
+                String birthdate = "";
+                System.out.println("Insert the new birthdate");
+                System.out.println("DD/MM/YYYY");
+                birthdate = s.nextLine();
+                while (!editAccount.isDate(birthdate)) {
+                    System.out.println("Insert a valid birthdate");
+                    System.out.println("DD/MM/YYYY");
+                    System.out.print("BIRTHDATE: ");
+                    birthdate = s.nextLine();
+                }
+                editAccount.editBirth(email, birthdate);
+                break;
+            case 4:
+                byte opt = 9;
+                System.out.println("=========================");
+                System.out.println("What you want to edit?");
+                System.out.println("{1} Dating");
+                System.out.println("{2} Married");
+                System.out.println("{3} Single");
+                System.out.println("{0} Back to menu");
+                System.out.println("=========================");
+
+                do{
+                    try{
+                    op = s.nextByte();
+                    }catch(InputMismatchException e){
+                        System.out.println("Escreva um Número");
+                        s.nextLine();
+                        op=9;
+                    }
+                }while(op==9);
+
+                switch (opt) {
+                    case 1:
+                        editAccount.editRelatioship(email, "Dating");
+                        break;
+                    case 2:
+                        editAccount.editRelatioship(email, "Married");
+                        break;
+                    case 3:
+                        editAccount.editRelatioship(email, "Single");
+                        break;
+                    case 0:
+                        break;
+                    default:
+                        System.out.println("Insert a valid option");
+                        break;
+                }
+                break;
+            case 5:
+                System.out.println("Insert your description: ");
+                s.nextLine();
+                String description = s.nextLine();
+                editAccount.editDescription(email, description);
+               System.out.println("Bio added.");
+                break;
+            case 0:
+                break;
+
+            default:
+                System.out.println("Insert a valid option");
+                break;
+        }
 
     }
 }

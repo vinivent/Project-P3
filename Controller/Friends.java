@@ -21,7 +21,7 @@ public class Friends extends Network {
             try{
             op = s.nextByte();
             }catch(InputMismatchException e){
-                System.out.println("Escreva um Número");
+                System.out.println("Insert a number");
                 s.nextLine();
                 op=9;
             }
@@ -265,9 +265,7 @@ public class Friends extends Network {
                 RequestList = account.getRequestsList();
                 int num = 1;
                 for (Account requestAccount : RequestList) {
-                    System.out.println("{" + num + "} " + requestAccount.getEmail() + " | "
-                            + getUser(requestAccount.getEmail()) + " - Sent you a request.");
-                    System.out.println("");
+                    System.out.println("{" + num + "} " + requestAccount.getEmail() + " | " + getUser(requestAccount.getEmail()) + " - Sent you a request.");
                     num++;
                 }
             }
