@@ -16,7 +16,6 @@ public class ReachMe {
     static Friends friend = new Friends();
     static Message message = new Message();
 
-
     public static void main(String[] args) {
         byte op = 9;
 
@@ -31,16 +30,15 @@ public class ReachMe {
             System.out.println("             {ReachMe - a UNICAP Social Media}               ");
             menu1();
 
-            do{
-                try{
-                op = s.nextByte();
-                }catch(InputMismatchException e){
+            do {
+                try {
+                    op = s.nextByte();
+                } catch (InputMismatchException e) {
                     System.out.println("Escreva um Número");
                     s.nextLine();
-                    op=9;
+                    op = 9;
                 }
-            }while(op==9);
-            
+            } while (op == 9);
 
             switch (op) {
                 case 1:
@@ -52,7 +50,7 @@ public class ReachMe {
                     break;
                 case 0:
                     System.out.println("See you soon.");
-                    
+
                     break;
                 default:
                     System.out.println("Insert a valid option.");
@@ -108,16 +106,15 @@ public class ReachMe {
             welcome(email);
             menuOnline();
 
-            do{
-                try{
-                op = s.nextByte();
-                }catch(InputMismatchException e){
+            do {
+                try {
+                    op = s.nextByte();
+                } catch (InputMismatchException e) {
                     System.out.println("Escreva um Número");
                     s.nextLine();
-                    op=9;
+                    op = 9;
                 }
-            }while(op==9);
-
+            } while (op == 9);
 
             switch (op) {
                 case 1:
@@ -125,7 +122,7 @@ public class ReachMe {
                     break;
                 case 2:
                     menuFriends(email);
-                    friend.optionFriends(email);
+                    optionFriends(email);
                     break;
                 case 3:
                     message.optionMessages(email);
@@ -143,7 +140,6 @@ public class ReachMe {
             }
 
         } while (op != 0);
-      
 
     }
 
@@ -151,19 +147,19 @@ public class ReachMe {
         System.out.println("EMAIL: ");
         s.nextLine();
         String email = s.nextLine();
-        while(!account.isMail(email) || !account.insert_mail(email)){
-            if(!account.isMail(email)){
+        while (!account.isMail(email) || !account.insert_mail(email)) {
+            if (!account.isMail(email)) {
                 System.out.println("========================");
                 System.out.println("Please insert a valid email.");
                 System.out.print("EMAIL: ");
                 email = s.nextLine();
-            }else{
+            } else {
                 System.out.println("========================");
                 System.out.println("This email is already registered");
                 System.out.println("Please insert a valid email.");
                 System.out.print("EMAIL: ");
                 email = s.nextLine();
-                
+
             }
         }
         System.out.println("========================");
@@ -189,14 +185,14 @@ public class ReachMe {
         System.out.println("Insert your email: ");
         s.nextLine();
         String email = s.nextLine();
-        while(account.findAccount(email) == null){
+        while (account.findAccount(email) == null) {
             System.out.print("Email not registered, try again: ");
             email = s.nextLine();
         }
         System.out.println("========================");
         System.out.println("PASSWORD: ");
         String password = s.nextLine();
-        while(!account.searchPassword(email, password)){
+        while (!account.searchPassword(email, password)) {
             System.out.println("Invalid password");
             password = s.nextLine();
         }
@@ -208,20 +204,19 @@ public class ReachMe {
     public static void profile(String email) {
         System.out.println();
         Account accountTest = account.findAccount(email);
-            if (accountTest.getEmail().equals(email)) {
-                System.out.println("===========================");
-                System.out.println("Username: " + accountTest.getUsername());
-                System.out.println("Birthdate: " + accountTest.getBirthdate());
-                System.out.println("Relationship: " + accountTest.getRelationship());
-                System.out.println("Bio: " + accountTest.getDescription());
-                System.out.println("===========================");
+        if (accountTest.getEmail().equals(email)) {
+            System.out.println("===========================");
+            System.out.println("Username: " + accountTest.getUsername());
+            System.out.println("Birthdate: " + accountTest.getBirthdate());
+            System.out.println("Relationship: " + accountTest.getRelationship());
+            System.out.println("Bio: " + accountTest.getDescription());
+            System.out.println("===========================");
 
-            }
-        
+        }
 
     }
 
-    // Edit account 
+    // Edit account
     public static void editAcc(String email) {
         byte op = 9;
         System.out.println("=========================");
@@ -235,23 +230,21 @@ public class ReachMe {
         System.out.println("=========================");
         System.out.print("Choose an option: ");
 
-
-        do{
-            try{
-            op = s.nextByte();
-            }catch(InputMismatchException e){
+        do {
+            try {
+                op = s.nextByte();
+            } catch (InputMismatchException e) {
                 System.out.println("Escreva um Número");
                 s.nextLine();
-                op=9;
+                op = 9;
             }
-        }while(op==9);
-
+        } while (op == 9);
 
         switch (op) {
             case 1:
                 char option = 'n';
                 String newUsername = "";
-               
+
                 do {
                     System.out.println("enter the new username: ");
                     s.nextLine();
@@ -268,7 +261,7 @@ public class ReachMe {
                 System.out.println("Insert the old Password");
                 oldPassword = s.next();
 
-                while(editAccount.searchPassword(email, oldPassword)){
+                while (editAccount.searchPassword(email, oldPassword)) {
                     System.out.println("Invalid password");
                     oldPassword = s.nextLine();
                 }
@@ -279,7 +272,7 @@ public class ReachMe {
                     System.out.println("the new password cannot be the same as the old one");
                     newPassword = s.next();
                 }
-                
+
                 editAccount.editPassword(email, newPassword);
 
                 break;
@@ -306,15 +299,15 @@ public class ReachMe {
                 System.out.println("{0} Back to menu");
                 System.out.println("=========================");
 
-                do{
-                    try{
-                    op = s.nextByte();
-                    }catch(InputMismatchException e){
+                do {
+                    try {
+                        op = s.nextByte();
+                    } catch (InputMismatchException e) {
                         System.out.println("Escreva um Número");
                         s.nextLine();
-                        op=9;
+                        op = 9;
                     }
-                }while(op==9);
+                } while (op == 9);
 
                 switch (opt) {
                     case 1:
@@ -338,7 +331,7 @@ public class ReachMe {
                 s.nextLine();
                 String description = s.nextLine();
                 editAccount.editDescription(email, description);
-               System.out.println("Bio added.");
+                System.out.println("Bio added.");
                 break;
             case 0:
                 break;
@@ -349,4 +342,93 @@ public class ReachMe {
         }
 
     }
+
+    // Friends
+
+    public static void optionFriends(String email) {
+        byte op = 9;
+
+        do {
+            try {
+                op = s.nextByte();
+            } catch (InputMismatchException e) {
+                System.out.println("Insert a number");
+                s.nextLine();
+                op = 9;
+            }
+        } while (op == 9);
+
+        switch (op) {
+            case 1:
+                System.out.print("Insert friend's email: ");
+                String friendEmail = s.next();
+                friend.sendInvite(email, friendEmail);
+                System.out.println("Invite sent to " + friend.getUser(friendEmail));
+                break;
+            case 2:
+                System.out.print("Insert friend's email:");
+                friendEmail = s.next();
+                
+                while (email.equals(friendEmail)) {
+                    System.out.println("You can't remove yourself.");
+                    System.out.print("Insert friend's email: ");
+                    friendEmail = s.next();
+                    System.out.println("");
+                    while(!account.searchAccount(friendEmail)){
+                        System.out.println("Email not found");
+                        friendEmail = s.nextLine();
+                    }
+                    
+                }
+
+                if (!friend.checkFriendList(email, friendEmail)) {
+                    System.out.println("You don't have any friend with this email.");
+                } else if(friend.findAccount(friendEmail)==null){
+                    System.out.println("This email does not exist");
+                }else{
+                    friend.removeFriend(email, friendEmail);
+                    System.out.println("You are no longer friends with " + friend.getUser(friendEmail));
+                }
+                break;
+            case 3:
+                System.out.println(friend.toStringFriendList(email));
+                break;
+            case 4:
+                int quantRequest = friend.getNotifications(email);
+                char option = 'y';
+                while (option != 'n' && option != 'N' && quantRequest != 0) {
+                    System.out.println("==PENDING==");
+                    System.out.println(friend.toStringRequest(email));
+                    System.out.print("Would you like to answer a request? 'Y' or 'N': ");
+                    option = s.next().charAt(0);
+                    if (option != 'y' && option != 'Y' && option != 'n' && option != 'N') {
+                        System.out.println("Insert a valid option.");
+                        System.out.println("==========================");
+                    }
+                    if (option == 'y' || option == 'Y') {
+                        System.out.print("Which request would you like to answer? (Insert Number): ");
+                        int num = s.nextInt();
+                        friendEmail = friend.respondRequests(email, num);
+                        friend.confirmSolicitation(email, friendEmail);
+                    }
+                }
+                break;
+            default:
+                System.out.println("Insert a valid option.");
+                break;
+        }
+    }
+
+    public void confirmSolicitation(String email, String friendEmail) {
+        char option;
+        System.out.print("Would you like to accept? 'Y' or 'N':");
+        option = s.next().charAt(0);
+        if (option == 'y' || option == 'Y') {
+            friend.addFriend(email, friendEmail);
+            System.out.println("Now you're friends with " + account.getUser(friendEmail));
+        } else {
+            System.out.println("REQUEST REJECTED");
+        }
+    }
+
 }
