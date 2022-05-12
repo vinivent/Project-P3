@@ -360,10 +360,12 @@ public class ReachMe {
 
         switch (op) {
             case 1:
-                System.out.print("Insert friend's email: ");
+                System.out.print("Insert friend's email or LEAVE: ");
                 String friendEmail = s.next();
-                friend.sendInvite(email, friendEmail);
-                System.out.println("Invite sent to " + friend.getUser(friendEmail));
+                if(!friendEmail.equalsIgnoreCase("leave")){
+                    friend.sendInvite(email, friendEmail);
+                    System.out.println("Invite sent to " + friend.getUser(friendEmail));
+                }
                 break;
             case 2:
                 System.out.print("Insert friend's email:");

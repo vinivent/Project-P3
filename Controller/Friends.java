@@ -85,15 +85,11 @@ public class Friends extends Network {
             System.out.println("You are already friend with this user try other email ");
             System.out.print("Insert friend's email or type {LEAVE} to leave: ");
             friendEmail = s.next();
-
         }
         while (checkRequestList(email, friendEmail)) {
             System.out.println("You are already sent a friend request ");
             System.out.print("Insert friend's email or type {LEAVE} to leave: ");
             friendEmail = s.next();
-
-            
-
         }
         if (!friendEmail.equalsIgnoreCase("leave")) {
             while(!searchAccount(friendEmail)){
