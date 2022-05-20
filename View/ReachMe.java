@@ -361,11 +361,14 @@ public class ReachMe {
         switch (op) {
             case 1:
                 System.out.print("Insert friend's email or LEAVE: ");
-                String friendEmail = s.next();
-                if(!friendEmail.equalsIgnoreCase("leave")){
+                s.nextLine();
+                String friendEmail = s.nextLine();
+                friendEmail = check(email, friendEmail);
+                if(!friendEmail.equalsIgnoreCase("LEAVE")){
                     friend.sendInvite(email, friendEmail);
                     System.out.println("Invite sent to " + friend.getUser(friendEmail));
                 }
+                
                 break;
             case 2:
                 System.out.print("Insert friend's email:");
@@ -403,7 +406,7 @@ public class ReachMe {
                     System.out.println(friend.toStringRequest(email));
                     System.out.print("Would you like to answer a request? 'Y' or 'N': ");
                     option = s.next().charAt(0);
-                    if (option != 'y' && option != 'Y' && option != 'n' && option != 'N') {
+                    while (option != 'y' && option != 'Y' && option != 'n' && option != 'N') {
                         System.out.println("Insert a valid option.");
                         System.out.println("==========================");
                     }
@@ -411,7 +414,14 @@ public class ReachMe {
                         System.out.print("Which request would you like to answer? (Insert Number): ");
                         int num = s.nextInt();
                         friendEmail = friend.respondRequests(email, num);
-                        friend.confirmSolicitation(email, friendEmail);
+                        
+                        System.out.print("Would you like to accept? 'Y' or 'N':");
+                        option = s.next().charAt(0);
+                        if (option == 'y' || option == 'Y') {
+                            friend.confirmSolicitation(email, friendEmail);
+                        }else {
+                            System.out.println("REQUEST REJECTED");
+                        }
                     }
                 }
                 break;
@@ -421,16 +431,26 @@ public class ReachMe {
         }
     }
 
-    public void confirmSolicitation(String email, String friendEmail) {
-        char option;
-        System.out.print("Would you like to accept? 'Y' or 'N':");
-        option = s.next().charAt(0);
-        if (option == 'y' || option == 'Y') {
-            friend.addFriend(email, friendEmail);
-            System.out.println("Now you're friends with " + account.getUser(friendEmail));
-        } else {
-            System.out.println("REQUEST REJECTED");
+    public static String check(String email, String friendEmail) {
+        while(!friend.searchAccount(friendEmail) || friend.checkFriendList(email, friendEmail) || friend.checkRequestList(email, friendEmail) && !friendEmail.equalsIgnoreCase("LEAVE")){
+                    
+            if(!friend.searchAccount(friendEmail)){  
+                System.out.println("Email not found try again or type {LEAVE}");
+                friendEmail = s.nextLine();
+            }
+    
+            if(friend.checkFriendList(email, friendEmail)) {
+                System.out.println("You are already friend with this user try other email ");
+                System.out.print("Insert friend's email or type {LEAVE} to leave: ");
+                friendEmail = s.next();
+            }
+            if(friend.checkRequestList(email, friendEmail)) {
+                System.out.println("You are already sent a friend request ");
+                System.out.print("Insert friend's email or type {LEAVE} to leave: ");
+                friendEmail = s.next();
+            }
         }
+        return friendEmail;
     }
 
 }
