@@ -125,7 +125,13 @@ public class ReachMe {
                     optionFriends(email);
                     break;
                 case 3:
-                    message.optionMessages(email);
+                System.out.println("Insert friend's Email or type {LEAVECHAT} to leave:");
+                String friendEmail=s.next();
+                while(!friend.searchAccount(friendEmail)){
+                    System.out.println("This account doesn't exist. Try again.");
+                    friendEmail = s.next();
+                }
+                    optionMessages(email, friendEmail);
                     break;
                 case 4:
                     profile(email);
@@ -452,5 +458,13 @@ public class ReachMe {
         }
         return friendEmail;
     }
-
+    public static void optionMessages(String email, String friendEmail){
+        message.showMessageList(email);
+        if(!friendEmail.equalsIgnoreCase("leavechat")){
+            System.out.println("Write your message or type {LEAVECHAT} to leave: ");
+            String messages="";
+            messages = s.nextLine();
+            message.sendMessage(email, friendEmail, messages);
+         }
+    }
 }

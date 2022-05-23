@@ -12,15 +12,6 @@ public class Message extends Network {
     LinkedList <String> MessageList = new LinkedList<>();
     Scanner s = new Scanner(System.in);
 
-    public void optionMessages(String email){
-        showMessageList(email);
-        System.out.println("Insert friend's Email or type {LEAVECHAT} to leave:");
-        String friendEmail=s.next();
-        if(!friendEmail.equalsIgnoreCase("leavechat")){
-            sendMessage(email, friendEmail);
-        }
-    }
-
     public void addMessage(String email, String friendEmail, String message) {
         
         for (Account Account : Accounts) {
@@ -50,11 +41,8 @@ public class Message extends Network {
         
     }
 
-    public void sendMessage(String email, String friendEmail) {
-        String message ="";
-        System.out.println("Write your message or type {LEAVECHAT} to leave: ");
-        message = s.nextLine();
-        while(!message.equalsIgnoreCase("leavechat")){
+    public void sendMessage(String email, String friendEmail, String message) {
+            while(!message.equalsIgnoreCase("leavechat")){
             showMessages(email, friendEmail);
             message = s.nextLine();
             addMessage(email, friendEmail, message);
@@ -81,17 +69,19 @@ public class Message extends Network {
 
     }
 
-    public void showMessageList(String email){
+    public String showMessageList(String email){
+        String messageList = "";
         for(Account account : Accounts){
             if(account.getEmail().equals(email)){
                 StoreMessage = account.getMessageList();
                 int num = 1;
                 for(StoreMessages accountMessages : StoreMessage){
-                    System.out.println("{"+ num + "} " + accountMessages.getRecivedUser() );
+                    messageList += "{"+ num + "} " + accountMessages.getRecivedUser() + "\n";
                     num++;
                 }
             }
         }
+        return messageList;
     }
 
 

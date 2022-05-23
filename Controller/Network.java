@@ -16,8 +16,6 @@ public class Network {
     public void createAccount(String email,String username, String password, String birthdate) {
         Account a = new Account(email, username, password, birthdate);
         Accounts.add(a);
-        Accounts.peek();
-
     }
 
 
