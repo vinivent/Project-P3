@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Model.Account;
 import Model.StoreMessages;
+import View.ReachMe;
 
 import java.util.LinkedList;
 
@@ -57,7 +58,7 @@ public class Message extends Network {
                 for(StoreMessages accountMessages : StoreMessage){
                     if(accountMessages.getRecivedUser().equals(friendEmail)){
                         MessageList = accountMessages.getMessageHistory();
-                        System.out.println("===================================================");
+                        ReachMe.separator();
                         for(String message : MessageList){
                             System.out.println(message);
                         }

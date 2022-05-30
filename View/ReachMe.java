@@ -99,6 +99,10 @@ public class ReachMe {
         System.out.print("");
     }
 
+    public static void separator() {
+        System.out.println("===================================================");
+    }
+
     public static void online(String email) {
         byte op = 9;
 
@@ -421,7 +425,7 @@ public class ReachMe {
                         int num = s.nextInt();
                         friendEmail = friend.respondRequests(email, num);
                         
-                        System.out.print("Would you like to accept? 'Y' or 'N':");
+                        System.out.print("Would you like to accept? 'Y' or 'N': \n If there are no friend requests type 'N' to leave.");
                         option = s.next().charAt(0);
                         if (option == 'y' || option == 'Y') {
                             friend.confirmSolicitation(email, friendEmail);
