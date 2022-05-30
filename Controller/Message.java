@@ -61,7 +61,7 @@ public class Message extends Network {
                         ReachMe.separator();
                         for(String message : MessageList){
                             System.out.println(message);
-                        }
+                        }   
                     }    
 
                 }

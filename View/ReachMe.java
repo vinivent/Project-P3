@@ -17,6 +17,7 @@ public class ReachMe {
     static Message message = new Message();
 
     public static void main(String[] args) {
+        
         byte op = 9;
 
         do {
@@ -414,7 +415,7 @@ public class ReachMe {
                 while (option != 'n' && option != 'N' && quantRequest != 0) {
                     System.out.println("==PENDING==");
                     System.out.println(friend.toStringRequest(email));
-                    System.out.print("Would you like to answer a request? 'Y' or 'N': ");
+                    System.out.print("If there are no friend requests type 'N' to leave. \nWould you like to answer a request? 'Y' or 'N': ");
                     option = s.next().charAt(0);
                     while (option != 'y' && option != 'Y' && option != 'n' && option != 'N') {
                         System.out.println("Insert a valid option.");
@@ -425,7 +426,7 @@ public class ReachMe {
                         int num = s.nextInt();
                         friendEmail = friend.respondRequests(email, num);
                         
-                        System.out.print("Would you like to accept? 'Y' or 'N': \n If there are no friend requests type 'N' to leave.");
+                        System.out.print("Would you like to accept? 'Y' or 'N':");
                         option = s.next().charAt(0);
                         if (option == 'y' || option == 'Y') {
                             friend.confirmSolicitation(email, friendEmail);
@@ -471,4 +472,5 @@ public class ReachMe {
             message.sendMessage(email, friendEmail, messages);
          }
     }
+
 }
