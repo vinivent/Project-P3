@@ -35,7 +35,7 @@ public class ReachMe {
                 try {
                     op = s.nextByte();
                 } catch (InputMismatchException e) {
-                    System.out.println("Escreva um Número");
+                    System.out.println("Enter a valid number");
                     s.nextLine();
                     op = 9;
                 }
@@ -52,9 +52,6 @@ public class ReachMe {
                 case 0:
                     System.out.println("See you soon.");
 
-                    break;
-                default:
-                    System.out.println("Insert a valid option.");
                     break;
             }
         } while (op != 0);
