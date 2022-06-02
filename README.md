@@ -7,8 +7,9 @@
 - Keeping a record of user information (profiles, albums, etc.)
 - Keeping a lot of information about relationships between users (community groupings, friendship networks, fan networks, dating lists, etc.)
 - Maintain the flow of messages between system users.
+- Using Design Patterns such as Singleton and MVC.
 
 
-Group: Ângelo Thiago, Raí Soares, Raul Miguel and Vinícius Ventura.
+Group: Angelo Thiago, Raí Soares, Raul Miguel and Vinícius Ventura.
 
 
