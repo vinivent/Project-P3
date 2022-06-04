@@ -8,6 +8,7 @@ import Controller.Message;
 import Controller.Network;
 import Model.Account;
 import Controller.EditAccount;
+import Controller.Singleton;
 
 public class ReachMe {
     static Scanner s = new Scanner(System.in);
@@ -153,7 +154,7 @@ public class ReachMe {
 
     public static void createAccount() {
         System.out.println("EMAIL: ");
-        s.nextLine();
+        Singleton.getInstance(s.nextLine());
         String email = s.nextLine();
         while (!account.isMail(email) || !account.insert_mail(email)) {
             if (!account.isMail(email)) {
