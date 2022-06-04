@@ -155,6 +155,7 @@ public class ReachMe {
     public static void createAccount() {
         System.out.println("EMAIL: ");
         Singleton singleton = Singleton.getInstance(s.nextLine());
+        s.nextLine();
         String email = singleton.email;
         while (!account.isMail(email) || !account.insert_mail(email)) {
             if (!account.isMail(email)) {
