@@ -129,7 +129,7 @@ public class ReachMe {
                 case 3:
                 System.out.println("Insert friend's Email or type {LEAVECHAT} to leave:");
                 String friendEmail=s.next();
-                while(!friend.searchAccount(friendEmail)){
+                while(!friend.searchAccount(friendEmail) || friendEmail.equals(email)){
                     if (friendEmail.equalsIgnoreCase("LEAVECHAT")) {
                         break;
                     }                    
