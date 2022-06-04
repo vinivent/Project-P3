@@ -154,20 +154,22 @@ public class ReachMe {
 
     public static void createAccount() {
         System.out.println("EMAIL: ");
-        Singleton.getInstance(s.nextLine());
-        String email = s.nextLine();
+        Singleton singleton = Singleton.getInstance(s.nextLine());
+        String email = singleton.email;
         while (!account.isMail(email) || !account.insert_mail(email)) {
             if (!account.isMail(email)) {
                 System.out.println("========================");
                 System.out.println("Please insert a valid email.");
                 System.out.print("EMAIL: ");
-                email = s.nextLine();
+                Singleton validSingleton = Singleton.getInstance(s.nextLine());
+                email = validSingleton.email;
             } else {
                 System.out.println("========================");
                 System.out.println("This email is already registered");
                 System.out.println("Please insert a valid email.");
                 System.out.print("EMAIL: ");
-                email = s.nextLine();
+                Singleton newSingleton = Singleton.getInstance(s.nextLine());
+                email = newSingleton.email;
 
             }
         }
