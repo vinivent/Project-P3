@@ -130,6 +130,9 @@ public class ReachMe {
                 System.out.println("Insert friend's Email or type {LEAVECHAT} to leave:");
                 String friendEmail=s.next();
                 while(!friend.searchAccount(friendEmail)){
+                    if (friendEmail.equalsIgnoreCase("LEAVECHAT")) {
+                        break;
+                    }                    
                     System.out.println("This account doesn't exist. Try again.");
                     friendEmail = s.next();
                 }
@@ -242,7 +245,7 @@ public class ReachMe {
             try {
                 op = s.nextByte();
             } catch (InputMismatchException e) {
-                System.out.println("Escreva um Número");
+                System.out.println("Type an Number, please");
                 s.nextLine();
                 op = 9;
             }
@@ -311,7 +314,7 @@ public class ReachMe {
                     try {
                         op = s.nextByte();
                     } catch (InputMismatchException e) {
-                        System.out.println("Escreva um Número");
+                        System.out.println("Type an Number, please");
                         s.nextLine();
                         op = 9;
                     }
