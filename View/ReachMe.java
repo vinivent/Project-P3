@@ -153,6 +153,7 @@ public class ReachMe {
 
     public static void createAccount() {
         System.out.println("EMAIL: ");
+        s.nextLine();
         String email = s.nextLine();
         while (!account.isMail(email) || !account.insert_mail(email)) {
             if (!account.isMail(email)) {
@@ -415,6 +416,7 @@ public class ReachMe {
                     option = s.next().charAt(0);
                     while (option != 'y' && option != 'Y' && option != 'n' && option != 'N') {
                         System.out.println("Insert a valid option.");
+                        option = s.next().charAt(0); 
                         System.out.println("==========================");
                     }
                     if (option == 'y' || option == 'Y') {
