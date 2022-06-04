@@ -133,7 +133,7 @@ public class ReachMe {
                     if (friendEmail.equalsIgnoreCase("LEAVECHAT")) {
                         break;
                     }                    
-                    System.out.println("This account doesn't exist. Try again.");
+                    System.out.println("This account doesn't exist or You're trying to send a message to yourself. Try again.");
                     friendEmail = s.next();
                 }
                     optionMessages(email, friendEmail);
